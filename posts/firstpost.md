@@ -32,16 +32,16 @@ https://fbflipper.com/docs/getting-started/react-native-ios
 
 
 ### Updating to latest SDK version
-By default, the version of Flipper shipped with react native init maybe outdated. To verify you are on the latest version, run `npm info flipper` to determine the latest stable version.
+By default, the version of Flipper shipped with react native maybe outdated. To verify you are on the latest version, run `npm info flipper` to determine the latest stable version.
 
 To update to the latest SDK, follow the steps:
 
 Android:
-- Bump the FLIPPER_VERSION variable in android/gradle.properties, for example: FLIPPER_VERSION=0.76.0
-- Run ./gradlew clean in the android directory.
+- Bump the `FLIPPER_VERSION` variable in `android/gradle.properties`, for example: `FLIPPER_VERSION=0.76.0`
+- Run `./gradlew clean` in the android directory.
 
 iOS:
-- Call use_flipper with a specific version in ios/Podfile, for example: use_flipper!({ 'Flipper' => '0.76.0' }).
+- Call `use_flipper `with a specific version in `ios/Podfile`, for example: `use_flipper!({ 'Flipper' => '0.76.0' })`.
 - Run `pod install` in the ios directory or `npx pod-install` in your project root.
 
 
