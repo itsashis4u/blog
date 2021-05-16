@@ -1,16 +1,16 @@
 {
   "title": "Ashish | Blog",
-  "url": "https://blog.ashishkumar.dev/",
+  "url": "https://ashishkumar.dev/",
   "description": "I write my thoughts about web and mobile apps",
   "feed": {
     "subtitle": "I write my thoughts about web and mobile apps",
     "filename": "feed.xml",
     "path": "/feed/feed.xml",
-    "id": "https://blog.ashishkumar.dev/"
+    "id": "https://ashishkumar.dev/"
   },
   "jsonfeed": {
     "path": "/feed/feed.json",
-    "url": "https://blog.ashishkumar.dev/feed/feed.json"
+    "url": "https://ashishkumar.dev/feed/feed.json"
   },
   "author": {
     "name": "Ashish Kumar Badtiya",
