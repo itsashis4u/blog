@@ -2,6 +2,7 @@
   "title": "Ashish | Blog",
   "url": "https://ashishkumar.dev/",
   "description": "I write my thoughts about web and mobile apps",
+  "favicon": "/img/favicon.ico",
   "feed": {
     "subtitle": "I write my thoughts about web and mobile apps",
     "filename": "feed.xml",
@@ -16,5 +17,8 @@
     "name": "Ashish Kumar Badtiya",
     "email": "itsashis4u@gmail.com",
     "url": "https://ashishkumar.dev/"
+  },
+  "twitter": {
+    "username": "itsashis4u"
   }
 }

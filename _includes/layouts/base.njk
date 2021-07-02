@@ -9,6 +9,17 @@
     <link rel="stylesheet" href="{{ '/css/prism-base16-monokai.dark.css' | url }}">
     <link rel="alternate" href="{{ metadata.feed.path | url }}" type="application/atom+xml" title="{{ metadata.title }}">
     <link rel="alternate" href="{{ metadata.jsonfeed.path | url }}" type="application/json" title="{{ metadata.title }}">
+    <link rel="icon" href="{{ metadata.favicon }}" type="image/ico" sizes="32x32">
+    {% metagen
+      title=title or metadata.title,
+      desc=description or metadata.description,
+      url=url or metadeta.url,
+      img=metadata.favicon,
+      img_alt=metadata.author.name,
+      twitter_card_type="summary_large_image",
+      twitter_handle=metadata.twitter.username,
+      name=metadata.author.name
+    %}
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8PX2BCKKRN"></script>
     <script>
