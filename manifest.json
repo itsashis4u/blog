@@ -1,0 +1,22 @@
+{
+  "short_name": "Ashish | Blog",
+  "name": "Ashish | Blog",
+  "icons": [
+    {
+      "src": "/img/favicon.ico",
+      "type": "image/ico",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/img/favicon.ico",
+      "type": "image/ico",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/?source=pwa",
+  "background_color": "#0e9af1",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#0e9af1",
+  "description": "I write my thoughts about web and mobile apps"
+}
