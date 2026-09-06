@@ -13,19 +13,13 @@
   pretty_urls = false
 
 [[headers]]
-  for = "/sitemap/index.xml"
+  for = "/sitemap.xml/"
   [headers.values]
     Content-Type = "application/xml; charset=utf-8"
 
-[[headers]]
-  for = "/sitemap/index.xml/"
-  [headers.values]
-    Content-Type = "application/xml; charset=utf-8"
-
-# Pretty URLs 500s some clients on unsashed .xml URLs. /sitemap/index.xml/ works.
-# Forced 301 sends those clients to the trailing-slash path that serves the file.
+# Pretty URLs 500s some clients on unsashed .xml. Send them to /sitemap.xml/.
 [[redirects]]
   from = "/sitemap.xml"
-  to = "/sitemap/index.xml/"
+  to = "/sitemap.xml/"
   status = 301
   force = true
