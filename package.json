@@ -20,6 +20,9 @@
     "url": "https://ashishkumar.dev"
   },
   "license": "MIT",
+  "engines": {
+    "node": ">=20.19.0"
+  },
   "bugs": {
     "url": "https://github.com/11ty/eleventy-base-blog/issues"
   },

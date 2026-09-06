@@ -76,10 +76,11 @@ module.exports = function(eleventyConfig) {
     breaks: true,
     linkify: true
   }).use(markdownItAnchor, {
-    permalink: markdownItAnchor.permalink.ariaHidden({
-      placement: "before",
+    permalink: markdownItAnchor.permalink.linkInsideHeader({
+      placement: "after",
       class: "direct-link",
-      symbol: "#"
+      symbol: "#",
+      ariaHidden: false
     })
   });
   eleventyConfig.setLibrary("md", markdownLibrary);
