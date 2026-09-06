@@ -16,14 +16,14 @@
     Content-Type = "application/xml; charset=utf-8"
 
 [[headers]]
-  for = "/sitemap.xml/"
+  for = "/sitemap/index.xml"
   [headers.values]
     Content-Type = "application/xml; charset=utf-8"
 
-# Pretty URLs 500s some clients on bare /sitemap.xml; /sitemap.xml/ is fine.
-# Forced 200 rewrite keeps the public URL and serves the working path.
+# Pretty URLs 500s some clients on a root sitemap.xml file.
+# Serve the XML from /sitemap/index.xml and rewrite the conventional URL.
 [[redirects]]
   from = "/sitemap.xml"
-  to = "/sitemap.xml/"
+  to = "/sitemap/index.xml"
   status = 200
   force = true

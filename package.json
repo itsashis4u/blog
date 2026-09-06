@@ -8,7 +8,7 @@
     "serve": "eleventy --serve",
     "start": "eleventy --serve",
     "debug": "DEBUG=* eleventy",
-    "test": "eleventy && node scripts/verify-seo.js"
+    "test": "rm -rf _site && eleventy && node scripts/verify-seo.js"
   },
   "repository": {
     "type": "git",
