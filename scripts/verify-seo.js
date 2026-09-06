@@ -20,8 +20,8 @@ assert.ok(!fs.existsSync(path.join(siteDir, "sitemap.xml")), "do not emit a root
 assertFile(redirectsPath, "_redirects");
 const redirects = fs.readFileSync(redirectsPath, "utf8");
 assert.ok(
-  /\/sitemap\.xml\s+\/sitemap\/index\.xml\s+200!/.test(redirects),
-  "_redirects must 200-rewrite /sitemap.xml to /sitemap/index.xml"
+  /\/sitemap\.xml\s+\/sitemap\/index\.xml\/\s+301!/.test(redirects),
+  "_redirects must 301 /sitemap.xml to /sitemap/index.xml/"
 );
 const sitemap = fs.readFileSync(sitemapPath, "utf8");
 assert.ok(sitemap.startsWith("<?xml"), "sitemap.xml must start with an XML declaration");
