@@ -5,7 +5,6 @@
 [build.environment]
   NODE_VERSION = "20"
 
-# Skip HTML post-processing so Pretty URLs cannot 500 unsashed .xml paths.
 [build.processing]
   skip_processing = true
 
@@ -13,13 +12,19 @@
   pretty_urls = false
 
 [[headers]]
-  for = "/sitemap.xml/"
+  for = "/sitemap/index.xml"
   [headers.values]
     Content-Type = "application/xml; charset=utf-8"
 
-# Pretty URLs 500s some clients on unsashed .xml. Send them to /sitemap.xml/.
+[[headers]]
+  for = "/sitemap/index.xml/"
+  [headers.values]
+    Content-Type = "application/xml; charset=utf-8"
+
+# Do not 301 /sitemap.xml onto /sitemap.xml/ — Netlify normalizes those
+# to the same path and the rule loops. Send clients to a distinct URL.
 [[redirects]]
   from = "/sitemap.xml"
-  to = "/sitemap.xml/"
+  to = "/sitemap/index.xml/"
   status = 301
   force = true
