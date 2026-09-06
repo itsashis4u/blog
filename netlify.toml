@@ -26,9 +26,9 @@
     Content-Type = "application/xml; charset=utf-8"
 
 # Pretty URLs 500s some clients on unsashed .xml URLs. /sitemap/index.xml/ works.
-# Forced 200 rewrite keeps /sitemap.xml in the address bar.
+# Forced 301 sends those clients to the trailing-slash path that serves the file.
 [[redirects]]
   from = "/sitemap.xml"
   to = "/sitemap/index.xml/"
-  status = 200
+  status = 301
   force = true
