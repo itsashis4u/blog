@@ -224,3 +224,11 @@ a[href].direct-link:focus:visited,
 :hover > a[href].direct-link:visited {
   color: #aaa;
 }
+
+/* About page role dates */
+.about-role-meta {
+  margin-top: -0.35em;
+  margin-bottom: 0.7em;
+  color: #555;
+  font-size: 0.9375em;
+}
