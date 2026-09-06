@@ -20,10 +20,15 @@
   [headers.values]
     Content-Type = "application/xml; charset=utf-8"
 
-# Pretty URLs 500s some clients on a root sitemap.xml file.
-# Serve the XML from /sitemap/index.xml and rewrite the conventional URL.
+[[headers]]
+  for = "/sitemap/index.xml/"
+  [headers.values]
+    Content-Type = "application/xml; charset=utf-8"
+
+# Pretty URLs 500s some clients on unsashed .xml URLs. /sitemap/index.xml/ works.
+# Forced 200 rewrite keeps /sitemap.xml in the address bar.
 [[redirects]]
   from = "/sitemap.xml"
-  to = "/sitemap/index.xml"
+  to = "/sitemap/index.xml/"
   status = 200
   force = true
