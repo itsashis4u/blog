@@ -1,5 +1,5 @@
 ---
-layout: layouts/post.njk
+layout: layouts/page.njk
 title: About Me
 description: Principal Engineer at Apollo 24|7 in Bengaluru. Mobile and web, previously Abridge, Walmart Global Tech, Practo, and KeepWorks.
 templateClass: tmpl-post
