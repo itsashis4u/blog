@@ -1,15 +1,124 @@
 ---
 layout: layouts/base.njk
 templateClass: tmpl-post
+pageCss: /css/post.css
+pageJs: /js/post.js
 ---
-<h1>{{ title }}</h1>
+{%- set visibleTags = tags | reject("equalto", "all") | reject("equalto", "nav") | reject("equalto", "post") | reject("equalto", "posts") -%}
+{%- set filedDate = (date | htmlDateString).split('-') -%}
+{%- set titleWords = title.split(' ') -%}
+{%- set titleLastWord = titleWords[titleWords.length - 1] -%}
+{%- set titleLead = titleWords.slice(0, titleWords.length - 1).join(' ') -%}
 
-{{ content | safe }}
+<div class="plate-grid-3">
+  <aside class="rail">
+    <div class="rail-block">
+      <span class="lbl">Plate</span>
+      <span class="disp rail-index">01</span>
+    </div>
+    <span class="rule"></span>
+    <div class="rail-block">
+      <span class="lbl">Filed</span>
+      <span class="mono">{{ filedDate[2] }}.{{ filedDate[1] }}.{{ filedDate[0] }}</span>
+    </div>
+    <div class="rail-block">
+      <span class="lbl">Tags</span>
+      <span class="mono rail-tags">
+        {%- for tag in visibleTags %}{{ tag }}{% if not loop.last %}<br>{% endif %}{% endfor -%}
+      </span>
+    </div>
+    <span class="rule"></span>
+    <div class="rail-block rail-toc">
+      <span class="lbl">Contents</span>
+      <div id="toc-list" class="mono"></div>
+    </div>
+    <span class="rule"></span>
+    <div class="rail-block rail-progress">
+      <span class="lbl">Progress</span>
+      <div class="progress-track"><div class="progress-fill" id="reading-progress"></div></div>
+    </div>
+  </aside>
 
-<hr>
-<ul>
-  {%- set nextPost = collections.posts | getNextCollectionItem(page) %}
-  {%- if nextPost %}<li>Next: <a href="{{ nextPost.url | url }}">{{ nextPost.data.title }}</a></li>{% endif %}
-  {%- set previousPost = collections.posts | getPreviousCollectionItem(page) %}
-  {%- if previousPost %}<li>Previous: <a href="{{ previousPost.url | url }}">{{ previousPost.data.title }}</a></li>{% endif %}
-</ul>
+  <article class="plate-article">
+    <div class="eyebrow-row">
+      <span class="lbl">Plate 01 &middot; {{ visibleTags[0] }}</span>
+      <span class="rule"></span>
+    </div>
+    <h1 class="disp article-title">{{ titleLead }} <span class="article-title-accent">{{ titleLastWord }}</span></h1>
+    {%- if description %}
+    <p class="article-lede">{{ description }}</p>
+    {%- endif %}
+    <div class="article-meta">
+      <span class="mono">{{ filedDate[2] }}.{{ filedDate[1] }}.{{ filedDate[0] }}</span>
+      <span class="lbl">Ashish Kumar Badtiya</span>
+    </div>
+    <span class="rule-strong"></span>
+
+    <div class="post-body">
+      {{ content | safe }}
+    </div>
+
+    <div class="article-footer">
+      <div class="article-footer-tags">
+        <span class="lbl">Filed under</span>
+        {%- for tag in visibleTags %}
+        <a href="{{ ('/tags/' + tag + '/') | url }}" class="tag-pill">{{ tag }}</a>
+        {%- endfor %}
+      </div>
+      <a href="{{ '/posts/' | url }}" class="lbl">All plates &rarr;</a>
+    </div>
+
+    {%- set nextPost = collections.posts | getNextCollectionItem(page) %}
+    {%- set previousPost = collections.posts | getPreviousCollectionItem(page) %}
+    {%- if nextPost or previousPost %}
+    <div class="article-adjacent">
+      {%- if previousPost %}
+      <a href="{{ previousPost.url | url }}" class="article-adjacent-link">
+        <span class="lbl">Previous</span>
+        <span class="mono">{{ previousPost.data.title }}</span>
+      </a>
+      {%- endif %}
+      {%- if nextPost %}
+      <a href="{{ nextPost.url | url }}" class="article-adjacent-link">
+        <span class="lbl">Next</span>
+        <span class="mono">{{ nextPost.data.title }}</span>
+      </a>
+      {%- endif %}
+    </div>
+    {%- endif %}
+  </article>
+
+  <aside class="marginalia">
+    {%- if marginalia %}
+      {%- if marginalia.shipsWith and marginalia.shipsWith.length %}
+      <div class="rail-block marginalia-block">
+        <span class="lbl">Ships with</span>
+        <span class="rule"></span>
+        <ol class="marginalia-list">
+          {%- for item in marginalia.shipsWith %}
+          <li><span class="mono marginalia-index">{% if loop.index < 10 %}0{% endif %}{{ loop.index }}</span> {{ item }}</li>
+          {%- endfor %}
+        </ol>
+      </div>
+      {%- endif %}
+      {%- if marginalia.note %}
+      <div class="rail-block marginalia-block">
+        <span class="lbl">Note</span>
+        <span class="rule"></span>
+        <p class="marginalia-note">{{ marginalia.note }}</p>
+      </div>
+      {%- endif %}
+      {%- if marginalia.requires and marginalia.requires.length %}
+      <div class="rail-block marginalia-block">
+        <span class="lbl">Requires</span>
+        <span class="rule"></span>
+        <div class="mono marginalia-requires">
+          {%- for req in marginalia.requires %}
+          <div>{{ req }}</div>
+          {%- endfor %}
+        </div>
+      </div>
+      {%- endif %}
+    {%- endif %}
+  </aside>
+</div>

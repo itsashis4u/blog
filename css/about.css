@@ -1,0 +1,234 @@
+/* ---------------------------------------------------------- */
+/* About page                                                  */
+/* ---------------------------------------------------------- */
+.about-main {
+  padding: 44px 0 60px;
+  min-width: 0;
+}
+@media (max-width: 767px) {
+  .about-main {
+    padding: 30px var(--gutter) 40px;
+  }
+}
+
+.about-lede-title {
+  font-size: 46px;
+  line-height: 1.15;
+  letter-spacing: -0.012em;
+  margin: 18px 0 22px;
+}
+@media (max-width: 767px) {
+  .about-lede-title {
+    font-size: 30px;
+  }
+}
+.about-lede-body {
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 0 0 26px;
+}
+
+.about-section-title {
+  font-size: 30px;
+  line-height: 1.15;
+  letter-spacing: -0.012em;
+  margin: 46px 0 22px;
+  color: var(--ink);
+}
+
+/* Span chart */
+.about-toc {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.about-toc a {
+  color: var(--muted);
+  border-bottom: 0;
+}
+@media (max-width: 767px) {
+  .about-toc {
+    flex-direction: row;
+    gap: 14px;
+  }
+}
+
+.about-span-chart {
+  margin-top: 8px;
+}
+.about-span-axis {
+  position: relative;
+  height: 18px;
+  margin-left: 172px;
+}
+.about-span-axis-label {
+  position: absolute;
+  color: var(--muted);
+}
+.about-span-axis-now {
+  color: var(--accent);
+}
+.about-span-row {
+  display: grid;
+  grid-template-columns: 172px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+}
+.about-span-label {
+  font-size: 12px;
+  color: var(--ink);
+}
+.about-span-track {
+  position: relative;
+  height: 42px;
+}
+.about-span-guide {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--line-soft);
+}
+.about-span-bar {
+  position: absolute;
+  top: 8px;
+  height: 26px;
+  border-radius: 2px;
+}
+.about-span-bar-label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.about-span-bar-label-inside {
+  color: var(--paper);
+  margin-left: 12px;
+}
+.about-span-caption {
+  font-size: 11px;
+  color: var(--muted);
+  margin: 14px 0 0;
+}
+
+@media (max-width: 767px) {
+  .about-span-chart {
+    overflow-x: auto;
+  }
+  .about-span-axis {
+    margin-left: 110px;
+    min-width: 480px;
+  }
+  .about-span-row {
+    grid-template-columns: 110px minmax(0, 1fr);
+    min-width: 590px;
+  }
+}
+
+/* Experience */
+.about-exp-entry {
+  display: grid;
+  grid-template-columns: 172px minmax(0, 1fr);
+  gap: 12px;
+  margin-bottom: 40px;
+}
+.about-exp-entry:last-child {
+  margin-bottom: 0;
+}
+.about-exp-meta p {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0;
+}
+.about-exp-loc {
+  margin-top: 4px !important;
+}
+.about-role-title {
+  font-size: 30px;
+  line-height: 1.15;
+  letter-spacing: -0.012em;
+  margin: 0 0 16px;
+  color: var(--ink);
+}
+.about-role-title em {
+  font-style: italic;
+}
+.about-bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.pt {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.pt span {
+  flex: 0 0 14px;
+  height: 1px;
+  background: #C6A188;
+  margin-top: 15px;
+}
+.pt p {
+  font-size: 17px;
+  line-height: 1.62;
+  color: var(--ink-body);
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .about-exp-entry {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}
+
+/* Education + Contact */
+.about-bottom-divider {
+  margin: 34px 0 40px;
+}
+.about-bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+.about-bottom-grid p {
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--ink-body);
+  margin: 10px 0 0;
+}
+.about-contact-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+.about-contact-handle {
+  margin-top: 12px !important;
+  color: var(--muted);
+}
+@media (max-width: 767px) {
+  .about-bottom-grid {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+}
+
+/* Colophon */
+.about-colophon {
+  background: var(--surface);
+  border-radius: 3px;
+  padding: 26px 28px;
+  margin-top: 40px;
+}
+.about-colophon-text {
+  font-style: italic;
+  font-size: 26px;
+  line-height: 1.3;
+  margin: 10px 0 0;
+  color: var(--ink);
+}

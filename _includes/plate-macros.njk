@@ -1,0 +1,5 @@
+{# Shared helpers for the Plate redesign. Kept out of .eleventy.js (off-limits) #}
+{# since no existing filter formats DD.MM.YYYY or zero-pads numbers. #}
+{% macro padZero(n) %}{% if n < 10 %}0{{ n }}{% else %}{{ n }}{% endif %}{% endmacro %}
+
+{% macro plateDate(d) %}{{ padZero(d.getUTCDate()) }}.{{ padZero(d.getUTCMonth() + 1) }}.{{ d.getUTCFullYear() }}{% endmacro %}

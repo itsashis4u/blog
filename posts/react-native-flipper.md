@@ -6,6 +6,18 @@ tags:
   - react-native
   - flipper
 layout: layouts/post.njk
+marginalia:
+  shipsWith:
+    - Layout Inspector
+    - Network
+    - Databases
+    - Images
+    - Shared Preferences
+    - Crash Reporter
+  note: "If you use redux in your application, you can install the Redux Flipper plugin."
+  requires:
+    - "react-native >= 0.62"
+    - "flipper 0.76.0"
 ---
 ### What is Flipper?
 Flipper is a great platform to inspect and debug mobile applications written in ios and android. This developer tool is written in [electron](https://www.electronjs.org/). It is useful in inspecting layout, comes with a network inspector and device log viewer. It has also a plugin API which means you can extend the functionalities by creating your own plugins or using existing ones from the internet.
