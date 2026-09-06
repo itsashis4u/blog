@@ -2,7 +2,7 @@
   "title": "Ashish | Blog",
   "url": "https://ashishkumar.dev/",
   "description": "I write my thoughts about web and mobile apps",
-  "favicon": "/img/favicon.ico",
+  "favicon": "/img/android-chrome-512x512.png",
   "feed": {
     "subtitle": "I write my thoughts about web and mobile apps",
     "filename": "feed.xml",
