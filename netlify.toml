@@ -14,3 +14,16 @@
   for = "/sitemap.xml"
   [headers.values]
     Content-Type = "application/xml; charset=utf-8"
+
+[[headers]]
+  for = "/sitemap.xml/"
+  [headers.values]
+    Content-Type = "application/xml; charset=utf-8"
+
+# Pretty URLs 500s some clients on bare /sitemap.xml; /sitemap.xml/ is fine.
+# Forced 200 rewrite keeps the public URL and serves the working path.
+[[redirects]]
+  from = "/sitemap.xml"
+  to = "/sitemap.xml/"
+  status = 200
+  force = true
