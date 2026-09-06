@@ -14,8 +14,16 @@
       twitter_handle=metadata.twitter.username,
       name=metadata.author.name
     %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=JetBrains+Mono:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="{{ '/css/index.css' | url }}">
     <link rel="stylesheet" href="{{ '/css/prism-base16-monokai.dark.css' | url }}">
+    {% if pageCss %}
+      {% for href in ([pageCss] if pageCss is string else pageCss) %}
+      <link rel="stylesheet" href="{{ href | url }}">
+      {% endfor %}
+    {% endif %}
     <link rel="alternate" href="{{ metadata.feed.path | url }}" type="application/atom+xml" title="{{ metadata.title }}">
     <link rel="alternate" href="{{ metadata.jsonfeed.path | url }}" type="application/json" title="{{ metadata.title }}">
     <link rel="icon" href="/img/favicon.ico" sizes="any">
@@ -34,22 +42,38 @@
     </script>
   </head>
   <body>
-    <header>
-      <h1 class="home"><a href="{{ '/' | url }}">{{ metadata.title }}</a></h1>
-
-      {#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
-      <ul class="nav">
-      {%- for entry in collections.all | eleventyNavigation %}
-        <li class="nav-item{% if entry.url == page.url %} nav-item-active{% endif %}"><a href="{{ entry.url | url }}">{{ entry.title }}</a></li>
-      {%- endfor %}
-      </ul>
+    <header class="masthead">
+      <a href="{{ '/' | url }}" class="wordmark">
+        <span class="disp wordmark-name">Ashish</span>
+        <span class="wordmark-tick"></span>
+        <span class="lbl wordmark-blog">Blog</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+        <span></span><span></span>
+      </button>
+      <nav class="site-nav" id="site-nav">
+        <ul class="nav">
+        {%- for entry in collections.all | eleventyNavigation %}
+          <li class="nav-item{% if entry.url == page.url %} nav-item-active{% endif %}"><a href="{{ entry.url | url }}">{{ entry.title }}</a></li>
+        {%- endfor %}
+        </ul>
+      </nav>
     </header>
+    <div class="rule"></div>
 
     <main{% if templateClass %} class="{{ templateClass }}"{% endif %}>
       {{ content | safe }}
     </main>
 
-    <footer></footer>
+    <footer class="site-footer">
+      <span class="lbl">&copy; 2026 Ashish Kumar Badtiya</span>
+      <div class="footer-links">
+        <a href="https://twitter.com/itsashis4u" class="lbl">Twitter</a>
+        <a href="https://www.linkedin.com/in/itsashis4u" class="lbl">LinkedIn</a>
+        <a href="https://github.com/itsashis4u" class="lbl">GitHub</a>
+        <a href="{{ metadata.feed.path | url }}" class="lbl">RSS</a>
+      </div>
+    </footer>
 
 
     <!-- Current page: {{ page.url | url }} -->
@@ -63,5 +87,11 @@
       twq('track','PageView');
     </script>
     <!-- End Twitter universal website tag code -->
+    <script defer src="{{ '/js/nav.js' | url }}"></script>
+    {% if pageJs %}
+      {% for src in ([pageJs] if pageJs is string else pageJs) %}
+      <script defer src="{{ src | url }}"></script>
+      {% endfor %}
+    {% endif %}
   </body>
 </html>

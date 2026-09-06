@@ -1,12 +1,32 @@
 ---
 layout: layouts/home.njk
 permalink: /posts/
+pageCss: /css/home.css
 eleventyNavigation:
   key: Archive
   order: 2
 ---
+{% set years = [] %}
+{% for post in collections.posts %}
+  {% set y = post.date.getUTCFullYear() %}
+  {% if years.indexOf(y) == -1 %}{% set _ = years.push(y) %}{% endif %}
+{% endfor %}
+{% set years = years | sort %}
 
-<h1>Archive</h1>
-
-{% set postslist = collections.posts %}
-{% include "postslist.njk" %}
+<div class="plate-grid-2 archive-grid">
+  <aside class="rail">
+    <div class="rail-block"><span class="lbl">Entries</span><span class="disp">{{ collections.posts.length }}</span></div>
+    <span class="rule"></span>
+    <div class="rail-block"><span class="lbl">Years</span><span class="mono">{{ years | join(" · ") }}</span></div>
+    <div class="rail-block"><span class="lbl">Subjects</span><span class="mono">{{ collections.tagList | join(" · ") }}</span></div>
+    <span class="rule"></span>
+    <div class="rail-block"><span class="lbl">Subscribe</span><a href="{{ metadata.feed.path | url }}" class="mono">by RSS</a></div>
+  </aside>
+  <div class="archive-main">
+    <div class="eyebrow-row"><span class="lbl">Index</span><span class="rule"></span></div>
+    <h1 class="disp archive-title">Archive</h1>
+    <p class="archive-subtitle">Everything filed, newest first.</p>
+    {% set postslist = collections.posts %}
+    {% include "postslist.njk" %}
+  </div>
+</div>

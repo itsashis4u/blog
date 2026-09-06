@@ -1,10 +1,22 @@
 ---
 permalink: /tags/
 layout: layouts/home.njk
+pageCss: /css/home.css
 ---
-<h1>Tags</h1>
-
-{% for tag in collections.tagList %}
-  {% set tagUrl %}/tags/{{ tag }}/{% endset %}
-  <a href="{{ tagUrl | url }}" class="post-tag">{{ tag }}</a>
-{% endfor %}
+<div class="plate-grid-2 archive-grid">
+  <aside class="rail">
+    <div class="rail-block"><span class="lbl">Subjects</span><span class="disp">{{ collections.tagList.length }}</span></div>
+  </aside>
+  <div class="archive-main">
+    <div class="eyebrow-row"><span class="lbl">Subjects</span><span class="rule"></span></div>
+    <h1 class="disp archive-title">Tags</h1>
+    <div class="subject-grid">
+      {% for tag in collections.tagList %}
+        <a href="{{ ('/tags/' + tag + '/') | url }}" class="subject-pill">
+          <span class="disp">{{ tag }}</span>
+          <span class="mono subject-count">{{ collections[tag].length }}</span>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
