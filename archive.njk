@@ -2,8 +2,10 @@
 layout: layouts/home.njk
 permalink: /posts/
 pageCss: /css/archive.css
+title: Blogs
+description: Every post, newest first.
 eleventyNavigation:
-  key: Archive
+  key: Blogs
   order: 2
 ---
 {% set years = [] %}
@@ -24,7 +26,7 @@ eleventyNavigation:
   </aside>
   <div class="archive-main">
     <div class="eyebrow-row"><span class="lbl">Index</span><span class="rule"></span></div>
-    <h1 class="disp archive-title">Archive</h1>
+    <h1 class="disp archive-title">Blogs</h1>
     <p class="archive-subtitle">Everything filed, newest first.</p>
     {% set postslist = collections.posts %}
     {% include "postslist.njk" %}
