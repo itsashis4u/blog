@@ -3,6 +3,7 @@ layout: layouts/base.njk
 templateClass: tmpl-post
 pageCss: /css/post.css
 pageJs: /js/post.js
+type: article
 ---
 {%- set visibleTags = tags | reject("equalto", "all") | reject("equalto", "nav") | reject("equalto", "post") | reject("equalto", "posts") -%}
 {%- set filedDate = (date | htmlDateString).split('-') -%}

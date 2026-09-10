@@ -4,15 +4,30 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title or metadata.title }}</title>
+    {% set articleMeta = [] %}
+    {% if type == "article" and date %}
+      {% set publishedDate = date | htmlDateString %}
+      {% set publishedAttrs = {property: "article:published_time", content: publishedDate} %}
+      {% set _ = articleMeta.push({tag: "meta", attrs: publishedAttrs}) %}
+      {% for t in (tags | default([]) | reject("equalto", "all") | reject("equalto", "nav") | reject("equalto", "post") | reject("equalto", "posts")) %}
+        {% set tagAttrs = {property: "article:tag", content: t} %}
+        {% set _ = articleMeta.push({tag: "meta", attrs: tagAttrs}) %}
+      {% endfor %}
+    {% endif %}
     {% metagen
       title=title or metadata.title,
       desc=description or metadata.description,
-      url=url or metadeta.url,
-      img=metadata.favicon,
+      url=(page.url | url | absoluteUrl(metadata.url)),
+      type=type or "website",
+      site_name=metadata.title,
+      img=("/img/og-share.png" | url | absoluteUrl(metadata.url)),
       img_alt=metadata.author.name,
+      img_width="1200",
+      img_height="630",
       twitter_card_type="summary_large_image",
       twitter_handle=metadata.twitter.username,
-      name=metadata.author.name
+      name=metadata.author.name,
+      custom=articleMeta
     %}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
