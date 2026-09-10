@@ -28,7 +28,30 @@
       twitter_handle=metadata.twitter.username,
       name=metadata.author.name,
       custom=articleMeta
-    %}
+    %}  
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "{{ metadata.author.name }}",
+      "url": "{{ metadata.url }}",
+      "sameAs": [
+        "https://twitter.com/itsashis4u",
+        "https://www.linkedin.com/in/itsashis4u",
+        "https://github.com/itsashis4u"
+      ],
+      "jobTitle": "Principal Engineer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Apollo 24|7"
+      },
+      "homeLocation": {
+        "@type": "Place",
+        "name": "Bengaluru, India"
+      }
+    }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=JetBrains+Mono:wght@400;500;700&display=swap">
