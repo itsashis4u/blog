@@ -1,22 +1,22 @@
 {
   "title": "Ashish | Blog",
-  "url": "https://ashishkumar.dev/",
+  "url": "https://www.ashishkumar.dev/",
   "description": "I write my thoughts about web and mobile apps",
   "favicon": "/img/android-chrome-512x512.png",
   "feed": {
     "subtitle": "I write my thoughts about web and mobile apps",
     "filename": "feed.xml",
     "path": "/feed/feed.xml",
-    "id": "https://ashishkumar.dev/"
+    "id": "https://www.ashishkumar.dev/"
   },
   "jsonfeed": {
     "path": "/feed/feed.json",
-    "url": "https://ashishkumar.dev/feed/feed.json"
+    "url": "https://www.ashishkumar.dev/feed/feed.json"
   },
   "author": {
     "name": "Ashish Kumar Badtiya",
     "email": "itsashis4u@gmail.com",
-    "url": "https://ashishkumar.dev/"
+    "url": "https://www.ashishkumar.dev/"
   },
   "twitter": {
     "username": "itsashis4u"

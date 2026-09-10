@@ -12,6 +12,11 @@
   pretty_urls = false
 
 [[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Content-Type = "application/xml; charset=utf-8"
+
+[[headers]]
   for = "/sitemap/index.xml"
   [headers.values]
     Content-Type = "application/xml; charset=utf-8"
@@ -20,11 +25,3 @@
   for = "/sitemap/index.xml/"
   [headers.values]
     Content-Type = "application/xml; charset=utf-8"
-
-# Do not 301 /sitemap.xml onto /sitemap.xml/ — Netlify normalizes those
-# to the same path and the rule loops. Send clients to a distinct URL.
-[[redirects]]
-  from = "/sitemap.xml"
-  to = "/sitemap/index.xml/"
-  status = 301
-  force = true
