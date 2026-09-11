@@ -51,6 +51,32 @@
       }
     }
     </script>
+    {% if type == "article" and date %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": {{ title | dump | safe }},
+      "description": {{ (description or metadata.description) | dump | safe }},
+      "datePublished": "{{ date | htmlDateString }}",
+      "author": {
+        "@type": "Person",
+        "name": {{ metadata.author.name | dump | safe }},
+        "url": "{{ metadata.url }}"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ page.url | url | absoluteUrl(metadata.url) }}"
+      },
+      "image": "{{ '/img/og-share.png' | url | absoluteUrl(metadata.url) }}",
+      "publisher": {
+        "@type": "Person",
+        "name": {{ metadata.author.name | dump | safe }}
+      },
+      "inLanguage": "en"
+    }
+    </script>
+    {% endif %}
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
