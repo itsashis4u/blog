@@ -6,6 +6,8 @@ tags:
   - react-native
   - performance
 layout: layouts/post.njk
+ogImage: /img/og-react-native-startup-budget.svg
+ogImageAlt: "Startup budget checklist for React Native apps"
 ---
 
 Cold start is where React Native apps feel honest. Users do not care that your feature flag system is elegant if the first screen takes three seconds to paint.

@@ -1,11 +1,15 @@
 ---
-title: Better debugging react native apps with Flipper
-description: How Flipper helps you debug issues with your app faster
+title: Better debugging React Native apps with Flipper
+description: A practical setup and workflow for debugging React Native apps faster with Flipper.
 date: 2021-02-19
+lastUpdated: 2026-09-22
 tags:
   - react-native
   - flipper
+  - debugging
 layout: layouts/post.njk
+ogImage: /img/og-react-native-flipper.svg
+ogImageAlt: "Flipper debugging workflow for React Native apps"
 marginalia:
   shipsWith:
     - Layout Inspector
@@ -20,8 +24,9 @@ marginalia:
     - "flipper 0.76.0"
 ---
 ### What is Flipper?
-Flipper is a great platform to inspect and debug mobile applications written in ios and android. This developer tool is written in [electron](https://www.electronjs.org/). It is useful in inspecting layout, comes with a network inspector and device log viewer. It has also a plugin API which means you can extend the functionalities by creating your own plugins or using existing ones from the internet.
-For example, if you use redux in your application, you can install [Redux Flipper](https://github.com/jk-gan/redux-flipper) plugin.
+Flipper is a desktop platform for inspecting and debugging mobile apps on iOS and Android. It is built with [Electron](https://www.electronjs.org/) and includes useful built-in tooling such as layout inspection, network inspection, and logs. It also has a plugin API, so you can extend it with custom plugins or community plugins.
+
+For example, if you use Redux in your app, you can install the [Redux Flipper](https://github.com/jk-gan/redux-flipper) plugin.
 
 By default, Flipper provides these plugins:
 - Layout Inspector
@@ -33,9 +38,10 @@ By default, Flipper provides these plugins:
 - React DevTools
 - Metro Logs
 
-### Set up
-If you are starting a new app using react native v0.62 and above, Flipper is available out of the box.
-If you want to integrate with an existing project (>= v0.62), follow the steps:
+### Setup
+If you are starting a new app with React Native v0.62 or above, Flipper is available out of the box.
+
+If you want to integrate Flipper into an existing project (>= v0.62), follow:
 Android:
 https://fbflipper.com/docs/getting-started/react-native-android/
 
@@ -43,8 +49,8 @@ iOS:
 https://fbflipper.com/docs/getting-started/react-native-ios
 
 
-### Updating to latest SDK version
-By default, the version of Flipper shipped with react native maybe outdated. To verify you are on the latest version, run `npm info flipper` to determine the latest stable version.
+### Update to the latest SDK version
+The Flipper version bundled with React Native may be outdated. To check the latest stable release, run `npm info flipper`.
 
 To update to the latest SDK, follow the steps:
 
@@ -53,8 +59,8 @@ Android:
 - Run `./gradlew clean` in the android directory.
 
 iOS:
-- Call `use_flipper `with a specific version in `ios/Podfile`, for example: `use_flipper!({ 'Flipper' => '0.76.0' })`.
+- Call `use_flipper` with a specific version in `ios/Podfile`, for example: `use_flipper!({ 'Flipper' => '0.76.0' })`.
 - Run `pod install` in the ios directory or `npx pod-install` in your project root.
 
 
-Flipper will make your life easier as a react native developer. Do try it.
+Flipper can dramatically shorten debugging loops in React Native projects. Start with the built-in plugins, then add workflow-specific plugins as your app grows.

@@ -4,11 +4,22 @@
     <span class="lbl">No.</span><span class="lbl">Date</span><span class="lbl">Title</span><span class="lbl">Subjects</span>
   </div>
   {% for post in postslist | reverse %}
-    <a href="{{ post.url | url }}" class="index-row">
+    {% set postTags = post.data.tags | default([]) %}
+    {% set visibleTags = [] %}
+    {% for tag in postTags %}
+      {% if collections.tagList.indexOf(tag) != -1 %}
+        {% set _ = visibleTags.push(tag) %}
+      {% endif %}
+    {% endfor %}
+    {% set postDescription = post.data.description | default("") %}
+    <a href="{{ post.url | url }}" class="index-row searchable-post" data-post-search-item data-post-title="{{ post.data.title | escape }}" data-post-tags="{{ visibleTags | join(' ') | escape }}" data-post-excerpt="{{ postDescription | escape }}">
       <span class="mono index-no">{{ plate.padZero(loop.index) }}</span>
       <span class="mono index-date">{{ plate.plateDate(post.date) }}</span>
       <span class="disp index-title">{{ post.data.title }}</span>
-      <span class="index-tags">{% for tag in post.data.tags %}{%- if collections.tagList.indexOf(tag) != -1 -%}<span class="tag-pill">{{ tag }}</span>{% endif %}{% endfor %}</span>
+      <span class="index-tags">{% for tag in visibleTags %}<span class="tag-pill">{{ tag }}</span>{% endfor %}</span>
+      {% if postDescription %}
+      <span class="index-excerpt">{{ postDescription }}</span>
+      {% endif %}
     </a>
   {% endfor %}
   <p class="mono index-footer">End of index &mdash; {{ postslist.length }} {{ "entry" if postslist.length == 1 else "entries" }}.</p>

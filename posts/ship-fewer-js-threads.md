@@ -7,6 +7,8 @@ tags:
   - performance
   - javascript
 layout: layouts/post.njk
+ogImage: /img/og-ship-fewer-js-threads.svg
+ogImageAlt: "Interaction budget guidance for React Native performance"
 marginalia:
   shipsWith:
     - InteractionManager

@@ -40,6 +40,20 @@ eleventyNavigation:
     <div class="eyebrow-row"><span class="lbl">About Me</span><span class="rule"></span></div>
     <h1 class="disp about-lede-title">I&rsquo;m a Principal Engineer at Apollo 24|7 in Bengaluru, handling mobile tech for the pharma side of the product.</h1>
     <p class="about-lede-body">TypeScript and React Native day to day, with a long-standing interest in the web technologies that run the internet. I started in 2016 at KeepWorks, then Practo, Walmart Global Tech, Abridge, and now Apollo.</p>
+    {% set latestPosts = collections.posts | reverse | head(3) %}
+    <section class="about-latest-posts" aria-labelledby="latest-posts-heading">
+      <div class="eyebrow-row"><span class="lbl">Latest writing</span><span class="rule"></span></div>
+      <h2 id="latest-posts-heading" class="disp about-section-title">Recent posts</h2>
+      <ul class="about-latest-list">
+        {% for post in latestPosts %}
+        <li>
+          <a class="disp about-latest-link" href="{{ post.url | url }}">{{ post.data.title }}</a>
+          <p class="mono about-latest-meta">{{ post.date | readableDate }}</p>
+        </li>
+        {% endfor %}
+      </ul>
+      <p class="mono about-latest-links"><a href="{{ '/posts/' | url }}">All posts</a> · <a href="{{ '/tags/' | url }}">Subjects</a></p>
+    </section>
 
     <section id="span" class="about-span">
       <h2 class="disp about-section-title">Span &mdash; 2016 to now</h2>

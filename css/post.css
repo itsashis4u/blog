@@ -196,6 +196,22 @@
   font-size: 13px;
 }
 
+.related-posts {
+  margin-top: 28px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+.related-posts-list {
+  margin: 16px 0 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.related-posts-link {
+  margin-top: 14px;
+}
+
 /* Marginalia */
 .marginalia {
   padding: 44px 0 44px 26px;

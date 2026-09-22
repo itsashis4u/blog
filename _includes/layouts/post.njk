@@ -7,6 +7,7 @@ type: article
 ---
 {%- set visibleTags = tags | reject("equalto", "all") | reject("equalto", "nav") | reject("equalto", "post") | reject("equalto", "posts") -%}
 {%- set filedDate = (date | htmlDateString).split('-') -%}
+{%- set updatedDate = ((lastUpdated or date) | htmlDateString).split('-') -%}
 {%- set titleWords = title.split(' ') -%}
 {%- set titleLastWord = titleWords[titleWords.length - 1] -%}
 {%- set titleLead = titleWords.slice(0, titleWords.length - 1).join(' ') -%}
@@ -22,6 +23,12 @@ type: article
       <span class="lbl">Filed</span>
       <span class="mono">{{ filedDate[2] }}.{{ filedDate[1] }}.{{ filedDate[0] }}</span>
     </div>
+    {% if lastUpdated %}
+    <div class="rail-block">
+      <span class="lbl">Updated</span>
+      <span class="mono">{{ updatedDate[2] }}.{{ updatedDate[1] }}.{{ updatedDate[0] }}</span>
+    </div>
+    {% endif %}
     <div class="rail-block">
       <span class="lbl">Tags</span>
       <span class="mono rail-tags">
@@ -87,6 +94,25 @@ type: article
       {%- endif %}
     </div>
     {%- endif %}
+    {% if visibleTags and collections[visibleTags[0]] %}
+      {% set primaryTag = visibleTags[0] %}
+      {% set sameTagPosts = collections[primaryTag] | reverse %}
+      <div class="related-posts">
+        <div class="eyebrow-row"><span class="lbl">More on {{ primaryTag }}</span><span class="rule"></span></div>
+        <ul class="related-posts-list">
+          {% set relatedCount = 0 %}
+          {% for related in sameTagPosts %}
+            {% if related.url != page.url and relatedCount < 3 %}
+              {% set relatedCount = relatedCount + 1 %}
+              <li>
+                <a href="{{ related.url | url }}" class="mono">{{ related.data.title }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+        <p class="mono related-posts-link"><a href="{{ ('/tags/' + primaryTag + '/') | url }}">See all {{ primaryTag }} posts</a></p>
+      </div>
+    {% endif %}
   </article>
 
   <aside class="marginalia">

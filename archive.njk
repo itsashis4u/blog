@@ -2,6 +2,7 @@
 layout: layouts/home.njk
 permalink: /posts/
 pageCss: /css/archive.css
+pageJs: /js/search.js
 title: Blogs
 description: Every post, newest first.
 eleventyNavigation:
@@ -28,7 +29,13 @@ eleventyNavigation:
     <div class="eyebrow-row"><span class="lbl">Index</span><span class="rule"></span></div>
     <h1 class="disp archive-title">Blogs</h1>
     <p class="archive-subtitle">Everything filed, newest first.</p>
+    <form class="post-search" role="search" aria-label="Search posts">
+      <label class="lbl" for="post-search-input">Search posts</label>
+      <input id="post-search-input" name="q" type="search" placeholder="Search by title, tag, or excerpt" autocomplete="off" data-post-search-input>
+      <p class="mono post-search-meta" data-post-search-status aria-live="polite"></p>
+    </form>
     {% set postslist = collections.posts %}
     {% include "postslist.njk" %}
+    <p class="mono archive-links"><a href="{{ '/tags/' | url }}">Browse all subjects</a></p>
   </div>
 </div>

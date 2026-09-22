@@ -37,8 +37,10 @@
             if (entry.isIntersecting) {
               tocLinks.forEach(function (item) {
                 item.link.classList.remove("is-active");
+                item.link.removeAttribute("aria-current");
               });
               match.link.classList.add("is-active");
+              match.link.setAttribute("aria-current", "true");
             }
           });
         },
@@ -48,6 +50,9 @@
       tocLinks.forEach(function (item) {
         observer.observe(item.heading);
       });
+    }
+    if (!tocLinks.length && tocBlock) {
+      tocBlock.style.display = "none";
     }
   } else if (tocBlock) {
     tocBlock.style.display = "none";

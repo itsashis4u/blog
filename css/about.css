@@ -29,6 +29,30 @@
   margin: 0 0 26px;
 }
 
+.about-latest-posts {
+  margin-bottom: 36px;
+}
+.about-latest-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.about-latest-link {
+  font-size: 24px;
+  line-height: 1.2;
+}
+.about-latest-meta {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+.about-latest-links {
+  margin-top: 14px;
+}
+
 .about-section-title {
   font-size: 30px;
   line-height: 1.15;
