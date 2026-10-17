@@ -2,21 +2,15 @@
 permalink: /tags/
 layout: layouts/home.njk
 pageCss: /css/archive.css
+title: Topics
 ---
-<div class="plate-grid-2 archive-grid">
-  <aside class="rail">
-    <div class="rail-block"><span class="lbl">Subjects</span><span class="disp">{{ collections.tagList.length }}</span></div>
-  </aside>
-  <div class="archive-main">
-    <div class="eyebrow-row"><span class="lbl">Subjects</span><span class="rule"></span></div>
-    <h1 class="disp archive-title">Tags</h1>
-    <div class="subject-grid">
-      {% for tag in collections.tagList %}
-        <a href="{{ ('/tags/' + tag + '/') | url }}" class="subject-pill">
-          <span class="disp">{{ tag }}</span>
-          <span class="mono subject-count">{{ collections[tag].length }}</span>
-        </a>
-      {% endfor %}
-    </div>
+<div class="archive-main">
+  <p class="page-kicker">Find a thread</p>
+  <h1 class="archive-title">Topics</h1>
+  <div class="subject-grid">
+    {% for tag in collections.tagList %}
+      <a href="{{ ('/tags/' + tag + '/') | url }}" class="subject-pill"><span>{{ tag }}</span><span class="mono subject-count">{{ collections[tag].length }}</span></a>
+    {% endfor %}
   </div>
+  <p class="archive-links"><a href="{{ '/posts/' | url }}">All writing</a></p>
 </div>

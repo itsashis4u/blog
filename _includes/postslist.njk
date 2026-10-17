@@ -1,15 +1,12 @@
-{% import "plate-macros.njk" as plate %}
-<div class="index-table">
-  <div class="index-table-head rule-strong-border">
-    <span class="lbl">No.</span><span class="lbl">Date</span><span class="lbl">Title</span><span class="lbl">Subjects</span>
-  </div>
+<ul class="writing-list">
   {% for post in postslist | reverse %}
-    <a href="{{ post.url | url }}" class="index-row">
-      <span class="mono index-no">{{ plate.padZero(loop.index) }}</span>
-      <span class="mono index-date">{{ plate.plateDate(post.date) }}</span>
-      <span class="disp index-title">{{ post.data.title }}</span>
-      <span class="index-tags">{% for tag in post.data.tags %}{%- if collections.tagList.indexOf(tag) != -1 -%}<span class="tag-pill">{{ tag }}</span>{% endif %}{% endfor %}</span>
-    </a>
+    <li class="writing-item">
+      <time datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time>
+      <div>
+        <h2><a href="{{ post.url | url }}">{{ post.data.title }}</a></h2>
+        {% if post.data.description %}<p>{{ post.data.description }}</p>{% endif %}
+        <div class="writing-tags">{% for tag in post.data.tags %}{%- if collections.tagList.indexOf(tag) != -1 -%}<a href="{{ ('/tags/' + tag + '/') | url }}">{{ tag }}</a>{% endif %}{% endfor %}</div>
+      </div>
+    </li>
   {% endfor %}
-  <p class="mono index-footer">End of index &mdash; {{ postslist.length }} {{ "entry" if postslist.length == 1 else "entries" }}.</p>
-</div>
+</ul>
