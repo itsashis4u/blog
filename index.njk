@@ -1,0 +1,66 @@
+---
+layout: layouts/base.njk
+templateClass: tmpl-home
+title: Ashish Kumar Badtiya
+description: A little corner of the internet for writing, things I’m learning, and small experiments.
+pageCss: /css/home.css
+---
+<div class="home-page">
+  <section class="home-intro" aria-labelledby="home-title">
+    <p class="home-kicker">Notes, ideas &amp; little experiments</p>
+    <h1 id="home-title">Hi, I’m Ashish.</h1>
+    <p class="home-lede">This is my little corner of the internet — notes on building things, things I’m learning, and the occasional experiment.</p>
+    <a class="text-link arrow-link" href="{{ '/about/' | url }}">More about me <span aria-hidden="true">→</span></a>
+  </section>
+
+  <section class="home-section" aria-labelledby="recent-title">
+    <div class="section-heading">
+      <h2 id="recent-title">Recent writing</h2>
+      <a class="text-link arrow-link" href="{{ '/posts/' | url }}">All writing <span aria-hidden="true">→</span></a>
+    </div>
+    {% set recentPosts = collections.posts | reverse | head(3) %}
+    {% if recentPosts.length %}
+    <ul class="recent-list">
+      {% for post in recentPosts %}
+      <li class="recent-item">
+        <time datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time>
+        <div class="recent-copy">
+          <a class="recent-title" href="{{ post.url | url }}">{{ post.data.title }}</a>
+          {% if post.data.description %}<p>{{ post.data.description }}</p>{% endif %}
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="quiet-note">New writing will find its way here soon.</p>
+    {% endif %}
+  </section>
+
+  <section class="home-section now-section" aria-labelledby="now-title">
+    <p class="section-label">Now · October 2026</p>
+    <h2 id="now-title">Making room for what’s next.</h2>
+    <p>Giving this corner of the internet a little more room to grow. Making space for writing and small experiments.</p>
+  </section>
+
+  <section class="home-section projects-section" aria-labelledby="projects-title">
+    <div class="section-heading">
+      <h2 id="projects-title">Projects &amp; experiments</h2>
+    </div>
+    <a class="project-row" href="https://github.com/itsashis4u/blog">
+      <span class="project-name">This website <span aria-hidden="true">↗</span></span>
+      <span class="project-description">A personal home for writing, built with Eleventy.</span>
+      <span class="project-status">In progress</span>
+    </a>
+    <a class="project-row" href="https://github.com/itsashis4u/drawer">
+      <span class="project-name">React Native drawer <span aria-hidden="true">↗</span></span>
+      <span class="project-description">A custom drawer with bottom tabs and nested screens. An older navigation experiment, rough edges included.</span>
+      <span class="project-status">Experiment · 2023</span>
+    </a>
+    <a class="project-row" href="https://github.com/itsashis4u/button-animation">
+      <span class="project-name">Button animation <span aria-hidden="true">↗</span></span>
+      <span class="project-description">A small React Native experiment with button motion: scale, fade, and a flip.</span>
+      <span class="project-status">Experiment · 2022</span>
+    </a>
+  </section>
+  <p class="home-colophon">// always a work in progress</p>
+</div>
