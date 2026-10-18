@@ -3,62 +3,139 @@ layout: layouts/base.njk
 templateClass: tmpl-post
 permalink: /about/
 title: About Ashish
-description: A little about Ashish, his work, and the places he has worked.
+description: Principal Engineer at Apollo 24|7 in Bengaluru. A decade of building mobile and web systems across Apollo, Abridge, Walmart, Practo, and KeepWorks.
 pageCss: /css/about.css
 ---
 <div class="about-page">
   <div class="about-main">
-    <h1 class="disp about-lede-title">I&rsquo;m a Principal Engineer at Apollo 24|7 in Bengaluru, handling mobile tech for the pharma side of the product.</h1>
-    <p class="about-lede-body">TypeScript and React Native day to day, with a long-standing interest in the web technologies that run the internet. I started in 2016 at KeepWorks, then Practo, Walmart Global Tech, Abridge, and now Apollo.</p>
+    <div class="about-top-bar">
+      <p class="page-kicker">Dossier &amp; Experience · 2016 – 2026</p>
+      <button type="button" class="print-cv-btn mono" onclick="window.print()" aria-label="Print or save page as PDF">Print / Save CV ↗</button>
+    </div>
 
-    <section id="experience" class="about-experience">
-      <h2 class="disp about-section-title">Experience</h2>
+    <h1 class="disp about-lede-title">I&rsquo;m a Principal Engineer at Apollo 24|7 in Bengaluru, leading mobile architecture and performance for the pharma platform.</h1>
+    <p class="about-lede-body">I work in TypeScript and React Native day to day, backed by a decade of shipping consumer mobile and web systems across healthcare, clinical AI, and global retail. Since 2016, my path has run through <strong>KeepWorks</strong>, <strong>Practo</strong>, <strong>Walmart Global Tech</strong>, <strong>Abridge</strong>, and <strong>Apollo 24|7</strong>.</p>
 
-      <div class="about-exp-entry">
+    <section class="about-arc" aria-label="Ten-year career trajectory">
+      <div class="about-arc-header">
+        <span class="lbl">10-Year Career Arc</span>
+        <span class="mono about-arc-span">Bengaluru &amp; Remote · 2016 → Present</span>
+      </div>
+      <div class="about-arc-bar">
+        <a href="#role-keepworks" class="arc-seg arc-keepworks" style="flex: 10" title="KeepWorks (2016–2017)">
+          <span class="arc-yr">’16</span>
+          <strong class="arc-co">KeepWorks</strong>
+          <span class="arc-domain">Web &amp; Node</span>
+        </a>
+        <a href="#role-practo" class="arc-seg arc-practo" style="flex: 23" title="Practo (2017–2019)">
+          <span class="arc-yr">’17</span>
+          <strong class="arc-co">Practo</strong>
+          <span class="arc-domain">Health Web &amp; Services</span>
+        </a>
+        <a href="#role-walmart" class="arc-seg arc-walmart" style="flex: 27" title="Walmart Global Tech (2019–2021)">
+          <span class="arc-yr">’19</span>
+          <strong class="arc-co">Walmart</strong>
+          <span class="arc-domain">Retail Mobile</span>
+        </a>
+        <a href="#role-abridge" class="arc-seg arc-abridge" style="flex: 15" title="Abridge (2021–2022)">
+          <span class="arc-yr">’21</span>
+          <strong class="arc-co">Abridge</strong>
+          <span class="arc-domain">Clinical AI</span>
+        </a>
+        <a href="#role-apollo" class="arc-seg arc-apollo is-current" style="flex: 45" title="Apollo 24|7 (2023–Present)">
+          <span class="arc-yr">’23 – Now</span>
+          <strong class="arc-co">Apollo 24|7</strong>
+          <span class="arc-domain">Principal · Pharma Mobile</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="about-systems" aria-labelledby="systems-title">
+      <h2 id="systems-title" class="disp about-section-title">Selected systems &amp; focus areas</h2>
+      <div class="systems-grid">
+        <article class="system-card">
+          <span class="mono system-tag">Architecture</span>
+          <h3>Server-Driven Screen Engine</h3>
+          <p>Designed a dynamic screen rendering system at Apollo 24|7 backed by a headless CMS and custom image pipeline so product teams ship layouts without app-store delays.</p>
+        </article>
+        <article class="system-card">
+          <span class="mono system-tag">Performance</span>
+          <h3>Startup &amp; Interaction Budgets</h3>
+          <p>Cut cold-start latency, trimmed JS bundle weight, and enforced mid-range Android frame budgets. Read my notes on <a href="{{ '/posts/react-native-startup-budget/' | url }}">startup budgets</a> and <a href="{{ '/posts/ship-fewer-js-threads/' | url }}">interaction budgets</a>.</p>
+        </article>
+        <article class="system-card">
+          <span class="mono system-tag">Healthcare &amp; AI</span>
+          <h3>Medical Audio &amp; Commerce</h3>
+          <p>Built patient-facing AI medical transcript experiences (Audio Answers) at Abridge and high-volume pharmacy and insurance flows across Apollo 24|7 and Practo.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="experience" class="about-experience" aria-labelledby="exp-title">
+      <h2 id="exp-title" class="disp about-section-title">Experience</h2>
+
+      <div id="role-apollo" class="about-exp-entry">
         <div class="about-exp-meta">
           <p class="mono">Jan 2023 &ndash; Present</p>
-          <p class="mono about-exp-loc">Bengaluru, Hybrid</p>
+          <p class="mono about-exp-loc">Bengaluru · Hybrid</p>
         </div>
         <div class="about-exp-body">
           <h3 class="disp about-role-title">Principal Engineer, <em>Apollo 24|7</em></h3>
           <div class="about-bullets">
-            <div class="pt"><span></span><p>I lead mobile engineering for pharma: features, performance, and code quality.</p></div>
-            <div class="pt"><span></span><p>I&rsquo;m in the code for new features, app performance, and architecture &mdash; including a dynamic screen system powered by a headless CMS, and an image rendering pipeline.</p></div>
-            <div class="pt"><span></span><p>Earlier I was on the App Performance team: app-wide optimizations, bundle size, Jenkins to Bitbucket Pipelines, linting, and automated testing.</p></div>
-            <div class="pt"><span></span><p>I mix technical leadership with hands-on engineering.</p></div>
+            <div class="pt"><span></span><p>Lead mobile engineering for the pharmacy vertical, owning feature delivery, runtime performance, and architectural standards across Android and iOS.</p></div>
+            <div class="pt"><span></span><p>Architected a headless-CMS dynamic screen system and an optimized image rendering pipeline while staying hands-on in core product code.</p></div>
+            <div class="pt"><span></span><p>Previously drove the App Performance charter: reduced release bundle size, migrated CI/CD from Jenkins to Bitbucket Pipelines, and instituted automated linting and test gates.</p></div>
+          </div>
+          <div class="about-stack-pills">
+            <span class="stack-pill">React Native</span>
+            <span class="stack-pill">TypeScript</span>
+            <span class="stack-pill">Hermes</span>
+            <span class="stack-pill">Headless CMS</span>
+            <span class="stack-pill">Bitbucket Pipelines</span>
           </div>
         </div>
       </div>
 
-      <div class="about-exp-entry">
+      <div id="role-abridge" class="about-exp-entry">
         <div class="about-exp-meta">
           <p class="mono">Oct 2021 &ndash; Dec 2022</p>
-          <p class="mono about-exp-loc">Remote</p>
+          <p class="mono about-exp-loc">Remote · US / India</p>
         </div>
         <div class="about-exp-body">
           <h3 class="disp about-role-title">Senior Software Engineer, <em>Abridge</em></h3>
           <div class="about-bullets">
-            <div class="pt"><span></span><p>I was a senior mobile engineer on the B2C Abridge app, where people record and review medical conversations with AI smart transcripts. React Native and TypeScript.</p></div>
-            <div class="pt"><span></span><p>I worked on features like Audio Answers, plus performance and UX, alongside the rest of the product team.</p></div>
+            <div class="pt"><span></span><p>Engineered core mobile workflows for the consumer Abridge app, enabling patients to record clinical visits and review AI-generated medical transcripts.</p></div>
+            <div class="pt"><span></span><p>Shipped key product capabilities including Audio Answers alongside playback UX and mobile performance improvements.</p></div>
+          </div>
+          <div class="about-stack-pills">
+            <span class="stack-pill">React Native</span>
+            <span class="stack-pill">TypeScript</span>
+            <span class="stack-pill">Audio Playback</span>
+            <span class="stack-pill">Clinical AI</span>
           </div>
         </div>
       </div>
 
-      <div class="about-exp-entry">
+      <div id="role-walmart" class="about-exp-entry">
         <div class="about-exp-meta">
           <p class="mono">Jul 2019 &ndash; Oct 2021</p>
-          <p class="mono about-exp-loc">Greater Bengaluru</p>
+          <p class="mono about-exp-loc">Bengaluru</p>
         </div>
         <div class="about-exp-body">
           <h3 class="disp about-role-title">SDE III, <em>Walmart Global Tech India</em></h3>
           <div class="about-bullets">
-            <div class="pt"><span></span><p>I worked on the React Native e-commerce app for Android and iOS (React Native, Redux).</p></div>
-            <div class="pt"><span></span><p>Walmart Excellence award, July 2021.</p></div>
+            <div class="pt"><span></span><p>Built and scaled high-traffic e-commerce journeys across the flagship Android and iOS apps using React Native and Redux.</p></div>
+            <div class="pt"><span></span><p>Recognized with the <strong>Walmart Excellence Award</strong> in July 2021 for engineering delivery and quality.</p></div>
+          </div>
+          <div class="about-stack-pills">
+            <span class="stack-pill">React Native</span>
+            <span class="stack-pill">Redux</span>
+            <span class="stack-pill">E-Commerce Scale</span>
           </div>
         </div>
       </div>
 
-      <div class="about-exp-entry">
+      <div id="role-practo" class="about-exp-entry">
         <div class="about-exp-meta">
           <p class="mono">Aug 2017 &ndash; Jul 2019</p>
           <p class="mono about-exp-loc">Bengaluru</p>
@@ -66,15 +143,19 @@ pageCss: /css/about.css
         <div class="about-exp-body">
           <h3 class="disp about-role-title">Software Engineer, <em>Practo</em></h3>
           <div class="about-bullets">
-            <div class="pt"><span></span><p>I worked on the insurance module across microservices.</p></div>
-            <div class="pt"><span></span><p>I worked on an internal tool for bulk doctor and clinic onboarding.</p></div>
-            <div class="pt"><span></span><p>I worked on a health subscription web app, plus marketing/landing pages and payments.</p></div>
-            <div class="pt"><span></span><p>I worked on webviews for the Android and iOS apps.</p></div>
+            <div class="pt"><span></span><p>Developed full-stack features across the health insurance microservice architecture and internal tooling for bulk doctor and clinic onboarding.</p></div>
+            <div class="pt"><span></span><p>Delivered the health subscription web application, payment integrations, high-conversion landing pages, and hybrid WebViews for the Android and iOS apps.</p></div>
+          </div>
+          <div class="about-stack-pills">
+            <span class="stack-pill">React</span>
+            <span class="stack-pill">Microservices</span>
+            <span class="stack-pill">Payments</span>
+            <span class="stack-pill">Mobile WebViews</span>
           </div>
         </div>
       </div>
 
-      <div class="about-exp-entry">
+      <div id="role-keepworks" class="about-exp-entry">
         <div class="about-exp-meta">
           <p class="mono">Sep 2016 &ndash; Jul 2017</p>
           <p class="mono about-exp-loc">Bengaluru</p>
@@ -82,7 +163,12 @@ pageCss: /css/about.css
         <div class="about-exp-body">
           <h3 class="disp about-role-title">Software Developer, <em>KeepWorks Technologies</em></h3>
           <div class="about-bullets">
-            <div class="pt"><span></span><p>I worked on Node.js projects and client web apps with React and JavaScript libraries.</p></div>
+            <div class="pt"><span></span><p>Built Node.js backend services and interactive client web applications in React and modern JavaScript.</p></div>
+          </div>
+          <div class="about-stack-pills">
+            <span class="stack-pill">Node.js</span>
+            <span class="stack-pill">React</span>
+            <span class="stack-pill">JavaScript</span>
           </div>
         </div>
       </div>
@@ -93,24 +179,92 @@ pageCss: /css/about.css
     <div class="about-bottom-grid">
       <div id="education" class="about-edu">
         <span class="lbl">Education</span>
-        <p>B.Tech in Computer Science and Engineering from IIIT Bhubaneswar.</p>
-        <p class="mono">2012 &ndash; 2016</p>
+        <h3 class="disp about-sub-heading">IIIT Bhubaneswar</h3>
+        <p>B.Tech in Computer Science and Engineering.</p>
+        <p class="mono">2012 &ndash; 2016 · Odisha, India</p>
       </div>
       <div id="contact" class="about-contact">
-        <span class="lbl">Contact</span>
-        <p>I&rsquo;m in Bengaluru. Best places to find me:</p>
+        <span class="lbl">Contact &amp; Profiles</span>
+        <p>Based in Bengaluru. Reach out directly or find my work across the web:</p>
         <div class="about-contact-pills">
-          <a class="tag-pill" href="https://twitter.com/itsashis4u">Twitter</a>
-          <a class="tag-pill" href="https://www.linkedin.com/in/itsashis4u">LinkedIn</a>
+          <button type="button" class="tag-pill copy-email-pill" data-copy-email="itsashis4u@gmail.com">itsashis4u@gmail.com · Copy</button>
+          <span class="email-copy-status" role="status" hidden></span>
           <a class="tag-pill" href="https://github.com/itsashis4u">GitHub</a>
+          <a class="tag-pill" href="https://www.linkedin.com/in/itsashis4u">LinkedIn</a>
+          <a class="tag-pill" href="https://twitter.com/itsashis4u">X / Twitter</a>
+          <a class="tag-pill" href="https://dev.to/itsashis4u">Dev.to</a>
+          <a class="tag-pill" href="https://hashnode.com/@itsashis4u">Hashnode</a>
         </div>
         <p class="mono about-contact-handle">@itsashis4u everywhere</p>
       </div>
     </div>
 
     <div class="about-colophon">
-      <span class="lbl">Off the clock</span>
-      <p class="disp about-colophon-text"><em>I&rsquo;m into PC hardware, and I still plan to build a machine from scratch.</em></p>
+      <div class="colophon-header">
+        <span class="lbl">Off the clock · Hardware Workbench</span>
+        <span class="mono colophon-status">Status: Part-picking</span>
+      </div>
+      <p class="disp about-colophon-text"><em>I&rsquo;m into PC hardware, and I&rsquo;m spec&rsquo;ing out a quiet small-form-factor machine to build from scratch.</em></p>
+      <div class="rig-blueprint">
+        <div class="rig-cell">
+          <span class="mono rig-label">Form factor</span>
+          <strong>Sub-15L SFF Chassis</strong>
+        </div>
+        <div class="rig-cell">
+          <span class="mono rig-label">Thermals</span>
+          <strong>High-airflow mesh, low-RPM noctua curve</strong>
+        </div>
+        <div class="rig-cell">
+          <span class="mono rig-label">Workload</span>
+          <strong>Android/iOS builds, local LLMs &amp; weekend gaming</strong>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+<script>
+  (function () {
+    var btn = document.querySelector("[data-copy-email]");
+    if (!btn) return;
+    var status = document.querySelector(".email-copy-status");
+    var resetTimer;
+    function showFallback(email) {
+      status.hidden = false;
+      status.replaceChildren();
+      status.appendChild(document.createTextNode("Copy unavailable. Select the address: "));
+      var address = document.createElement("a");
+      address.href = "mailto:" + email;
+      address.textContent = email;
+      status.appendChild(address);
+      var selection = window.getSelection();
+      if (selection) {
+        var range = document.createRange();
+        range.selectNodeContents(address);
+        selection.removeAllRanges();
+        selection.addRange(range);
+      }
+    }
+    btn.addEventListener("click", function () {
+      var email = btn.getAttribute("data-copy-email");
+      clearTimeout(resetTimer);
+      btn.textContent = email + " · Copy";
+      status.hidden = true;
+      status.textContent = "";
+      if (!navigator.clipboard || !navigator.clipboard.writeText) {
+        showFallback(email);
+        return;
+      }
+      navigator.clipboard.writeText(email).then(function () {
+        btn.textContent = "Copied " + email + " ✓";
+        status.hidden = false;
+        status.textContent = "Email copied to clipboard.";
+        resetTimer = setTimeout(function () {
+          btn.textContent = email + " · Copy";
+          status.hidden = true;
+        }, 2000);
+      }).catch(function () {
+        showFallback(email);
+      });
+    });
+  })();
+</script>

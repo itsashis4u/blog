@@ -1,11 +1,17 @@
 <ul class="writing-list">
   {% for post in postslist | reverse %}
+    {%- set wordCount = post.templateContent | striptags | wordcount -%}
+    {%- set readingMins = (wordCount / 200) | round(0, "ceil") -%}
+    {%- if readingMins < 1 -%}{%- set readingMins = 1 -%}{%- endif -%}
     <li class="writing-item">
-      <time datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time>
+      <div class="writing-meta">
+        <time datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time>
+        <span class="mono writing-reading-time">{{ readingMins }} min read</span>
+      </div>
       <div>
         <h2><a href="{{ post.url | url }}">{{ post.data.title }}</a></h2>
         {% if post.data.description %}<p>{{ post.data.description }}</p>{% endif %}
-        <div class="writing-tags">{% for tag in post.data.tags %}{%- if collections.tagList.indexOf(tag) != -1 -%}<a href="{{ ('/tags/' + tag + '/') | url }}">{{ tag }}</a>{% endif %}{% endfor %}</div>
+        <div class="writing-tags">{% for tag in post.data.tags %}{%- if collections.tagList.indexOf(tag) != -1 -%}<a href="{{ ('/tags/' + tag + '/') | url }}">#{{ tag }}</a>{% endif %}{% endfor %}</div>
       </div>
     </li>
   {% endfor %}

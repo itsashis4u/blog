@@ -1,20 +1,310 @@
-.about-main { max-width: 720px; padding: 56px 0 76px; }
-.about-lede-title { margin: 0 0 18px; font: 400 clamp(29px, 4.5vw, 36px)/1.25 var(--font-serif); letter-spacing: -.015em; text-wrap: pretty; }
-.about-lede-body { color: var(--soft-ink); font-size: 17px; line-height: 1.75; margin: 0; }
-.about-section-title { margin: 46px 0 26px; font: 400 28px/1.25 var(--font-serif); }
-.about-exp-entry { display: grid; grid-template-columns: 158px minmax(0, 1fr); gap: 24px; padding: 24px 0; border-top: 1px solid var(--line); }
-.about-exp-meta p { margin: 0 0 5px; color: var(--muted); font: 11px/1.7 var(--font-mono); }
-.about-role-title { margin: 0 0 15px; font: 500 23px/1.3 var(--font-serif); }
-.about-role-title em { font-style: normal; }
-.about-bullets { display: grid; gap: 12px; }
+.about-main { max-width: 780px; padding: 52px 0 80px; }
+
+.about-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+.about-top-bar .page-kicker { margin: 0; }
+.print-cv-btn {
+  appearance: none;
+  padding: 5px 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-elevated, var(--surface));
+  color: var(--soft-ink);
+  font-size: 11px;
+  cursor: pointer;
+  transition: border-color 140ms ease, color 140ms ease;
+}
+.print-cv-btn:hover {
+  color: var(--ink);
+  border-color: var(--accent-underline);
+}
+
+.about-lede-title {
+  margin: 0 0 18px;
+  font: 400 clamp(30px, 4.5vw, 38px)/1.22 var(--font-serif);
+  letter-spacing: -.02em;
+  text-wrap: pretty;
+}
+.about-lede-body {
+  color: var(--soft-ink);
+  font-size: 17px;
+  line-height: 1.75;
+  margin: 0;
+}
+.about-lede-body strong {
+  color: var(--ink);
+  font-weight: 550;
+}
+
+/* 10-Year Career Arc Bar */
+.about-arc {
+  margin-top: 38px;
+  padding: 18px 20px;
+  background: var(--surface-elevated, var(--surface));
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.about-arc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.about-arc-span {
+  font-size: 11px;
+  color: var(--muted);
+}
+.about-arc-bar {
+  display: flex;
+  gap: 6px;
+  width: 100%;
+}
+.arc-seg {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  text-decoration: none;
+  color: var(--ink);
+  min-width: 0;
+  transition: border-color 140ms ease, transform 140ms ease;
+}
+.arc-seg:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+.arc-seg.is-current {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 10%, var(--paper));
+}
+.arc-yr {
+  font: 10px/1.3 var(--font-mono);
+  color: var(--muted);
+}
+.arc-co {
+  font: 600 13px/1.3 var(--font-serif);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.arc-domain {
+  font: 11px/1.3 var(--font-sans);
+  color: var(--soft-ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Selected Systems Grid */
+.about-section-title {
+  margin: 48px 0 22px;
+  font: 400 28px/1.25 var(--font-serif);
+  letter-spacing: -.015em;
+}
+.systems-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.system-card {
+  padding: 18px 20px;
+  background: var(--surface-elevated, var(--surface));
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.system-tag {
+  display: inline-block;
+  margin-bottom: 8px;
+  color: var(--accent);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.system-card h3 {
+  margin: 0 0 8px;
+  font: 500 18px/1.3 var(--font-serif);
+  color: var(--ink);
+}
+.system-card p {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--soft-ink);
+}
+
+/* Experience Entries */
+.about-exp-entry {
+  display: grid;
+  grid-template-columns: 164px minmax(0, 1fr);
+  gap: 24px;
+  padding: 26px 0;
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 24px;
+}
+.about-exp-meta p {
+  margin: 0 0 5px;
+  color: var(--muted);
+  font: 11px/1.7 var(--font-mono);
+}
+.about-role-title {
+  margin: 0 0 14px;
+  font: 500 23px/1.3 var(--font-serif);
+}
+.about-role-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+.about-bullets { display: grid; gap: 11px; }
 .pt { display: flex; align-items: baseline; gap: 10px; }
 .pt span { flex: 0 0 8px; height: 1px; background: var(--accent-underline); }
 .pt p { margin: 0; color: var(--soft-ink); font-size: 15px; line-height: 1.7; }
+.pt strong { color: var(--ink); font-weight: 600; }
+
+.about-stack-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 14px;
+}
+.stack-pill {
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font: 10.5px/1.5 var(--font-mono);
+}
+
 .about-bottom-divider { margin: 26px 0; }
-.about-bottom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 38px; }
-.about-bottom-grid p { color: var(--soft-ink); font-size: 15px; }
-.about-contact-pills { display: flex; flex-wrap: wrap; gap: 10px; }
-.about-contact-handle { font-size: 11px !important; color: var(--muted) !important; }
-.about-colophon { padding-top: 28px; margin-top: 32px; border-top: 1px solid var(--line); }
-.about-colophon-text { margin: 12px 0 0; font: 23px/1.4 var(--font-serif); }
-@media(max-width:620px) { .about-main { padding-top: 38px; } .about-exp-entry, .about-bottom-grid { grid-template-columns: 1fr; gap: 12px; } .about-bottom-grid { gap: 24px; } }
+.about-bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 38px;
+}
+.about-sub-heading {
+  margin: 6px 0 6px;
+  font: 500 20px/1.3 var(--font-serif);
+}
+.about-bottom-grid p { color: var(--soft-ink); font-size: 15px; margin: 6px 0 12px; }
+.about-contact-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.copy-email-pill {
+  background: var(--surface-elevated, var(--surface));
+  color: var(--ink);
+  cursor: pointer;
+}
+.about-contact-handle {
+  margin-top: 12px !important;
+  font-size: 11px !important;
+  color: var(--muted) !important;
+}
+
+/* Hardware Workbench Colophon */
+.about-colophon {
+  padding: 24px;
+  margin-top: 38px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface-elevated, var(--surface));
+}
+.colophon-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.colophon-status {
+  font-size: 11px;
+  color: var(--accent);
+}
+.about-colophon-text {
+  margin: 10px 0 18px;
+  font: 22px/1.4 var(--font-serif);
+}
+.rig-blueprint {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.rig-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.rig-label {
+  font-size: 10.5px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.rig-cell strong {
+  font-size: 13px;
+  font-weight: 550;
+  color: var(--ink);
+  line-height: 1.45;
+}
+
+@media (max-width: 760px) {
+  .about-arc-bar { flex-direction: column; }
+  .systems-grid, .rig-blueprint { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 620px) {
+  .about-main { padding-top: 38px; }
+  .about-exp-entry, .about-bottom-grid { grid-template-columns: 1fr; gap: 12px; }
+  .about-bottom-grid { gap: 24px; }
+}
+
+@media print {
+  :root {
+    color-scheme: light !important;
+    --paper: #ffffff !important;
+    --ink: #111111 !important;
+    --soft-ink: #333333 !important;
+    --muted: #444444 !important;
+    --line: #cccccc !important;
+    --accent: #222222 !important;
+    --accent-hover: #000000 !important;
+    --accent-underline: #666666 !important;
+    --surface: #ffffff !important;
+    --surface-elevated: #ffffff !important;
+  }
+  .masthead, .site-footer, .pokemon-roamer, .print-cv-btn, .about-colophon {
+    display: none !important;
+  }
+  body {
+    background: #ffffff !important;
+    color: #111111 !important;
+    font-size: 11pt;
+  }
+  .about-main {
+    max-width: 100%;
+    padding: 0;
+  }
+  .about-exp-entry {
+    padding: 14px 0;
+    break-inside: avoid;
+  }
+  .system-card, .about-arc {
+    border-color: #cccccc !important;
+    background: transparent !important;
+    break-inside: avoid;
+  }
+}
+
+.email-copy-status { flex-basis: 100%; color: var(--soft-ink); font-size: 13px; line-height: 1.6; overflow-wrap: anywhere; }
+.email-copy-status[hidden] { display: none; }
