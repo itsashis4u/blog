@@ -24,6 +24,9 @@
     charmander: { home: "camp", wait: 10000, mood: "warm" },
     squirtle: { home: "pond", wait: 7000, mood: "splash" }
   };
+  function isPokedexActive() {
+    return document.documentElement.getAttribute("data-style") === "pokedex";
+  }
   function bubblePosition() {
     var rect = roamer.getBoundingClientRect();
     roamer.classList.toggle("bubble-left", rect.left < 210);
@@ -79,6 +82,7 @@
   });
 
   function say(text) {
+    if (!isPokedexActive()) return;
     clearTimeout(hideTimer);
     bubblePosition();
     message.textContent = text;
@@ -96,18 +100,18 @@
     if (announce) say(buddies[current].greeting);
   }
   function place() {
+    if (!isPokedexActive()) return;
     var width = window.innerWidth;
     var height = window.innerHeight;
-    var size = roamer.offsetWidth;
+    var size = roamer.offsetWidth || 104;
     var narrow = width < 1100;
-    // Wide screens: roam in the outer margin. Phones: stay in the bottom strip.
     var x, y;
     if (narrow) {
       x = step % 2 ? Math.max(8, width - size - 12) : 12;
-      y = Math.max(100, height - roamer.offsetHeight - 12);
+      y = Math.max(100, height - (roamer.offsetHeight || 124) - 12);
     } else {
       x = width - size - 12;
-      y = Math.max(100, Math.min(height - roamer.offsetHeight - 16, height * (step % 2 ? .68 : .28)));
+      y = Math.max(100, Math.min(height - (roamer.offsetHeight || 124) - 16, height * (step % 2 ? .68 : .28)));
     }
     roamer.style.left = x + "px";
     roamer.style.top = y + "px";
@@ -121,7 +125,7 @@
   }
   function release() { if (!paused && !engaged) roamer.style.transition = ""; }
   function wander() {
-    if (paused || engaged || reduced.matches || document.hidden || Date.now() - lastWander < profiles[current].wait) return;
+    if (!isPokedexActive() || paused || engaged || reduced.matches || document.hidden || Date.now() - lastWander < profiles[current].wait) return;
     lastWander = Date.now();
     var preferred = document.querySelector('[data-habitat="' + profiles[current].home + '"]');
     if (preferred) {
@@ -180,7 +184,6 @@
           say(habitatReaction(habitat));
         }
       });
-      // Dragging parks the Pokémon at the chosen spot until wandering resumes.
       paused = true;
       pause.setAttribute("aria-pressed", "true");
       pause.setAttribute("aria-label", "Resume Pokémon wandering");
@@ -210,18 +213,37 @@
   roamer.addEventListener("pointerleave", function () { if (!drag) { engaged = false; release(); } });
   roamer.addEventListener("focusin", function () { engaged = true; freeze(); });
   roamer.addEventListener("focusout", function (event) { if (!roamer.contains(event.relatedTarget)) { engaged = false; release(); } });
+
+  function syncVisibility(announceOnShow) {
+    var active = isPokedexActive();
+    roamer.hidden = !active;
+    var habitatSec = document.querySelector(".habitat-section");
+    if (habitatSec) habitatSec.hidden = !active;
+    if (active) {
+      place();
+      if (announceOnShow) say(buddies[current].greeting);
+    }
+  }
+
   var previousTheme = document.documentElement.getAttribute("data-theme");
+  var previousStyle = document.documentElement.getAttribute("data-style");
   new MutationObserver(function () {
     var nextTheme = document.documentElement.getAttribute("data-theme");
-    if (nextTheme === previousTheme) return;
-    previousTheme = nextTheme;
-    if (current === "charmander") { mood("warm"); say(nextTheme === "dark" ? "Charmander's tail glows brighter. Night watch begins!" : "Charmander stretches in the daylight."); }
-    if (current === "pikachu") { mood("spark"); say(nextTheme === "dark" ? "Pikachu lights the way. Tiny sparks, big adventure." : "Pikachu is charged up for a new day!"); }
-  }).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+    var nextStyle = document.documentElement.getAttribute("data-style");
+    if (nextStyle !== previousStyle) {
+      previousStyle = nextStyle;
+      syncVisibility(nextStyle === "pokedex");
+    }
+    if (nextTheme !== previousTheme) {
+      previousTheme = nextTheme;
+      if (current === "charmander") { mood("warm"); say(nextTheme === "dark" ? "Charmander's tail glows brighter. Night watch begins!" : "Charmander stretches in the daylight."); }
+      if (current === "pikachu") { mood("spark"); say(nextTheme === "dark" ? "Pikachu lights the way. Tiny sparks, big adventure." : "Pikachu is charged up for a new day!"); }
+    }
+  }).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme", "data-style"] });
+
   window.addEventListener("resize", function () { habitat = null; markHabitat(null); place(); });
   reduced.addEventListener("change", place);
   render(false);
-  roamer.hidden = false;
-  place();
+  syncVisibility(false);
   setInterval(wander, 1500);
 })();

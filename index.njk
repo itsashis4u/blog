@@ -7,24 +7,34 @@ pageCss: /css/home.css
 ---
 <div class="home-page">
   <section class="home-intro" aria-labelledby="home-title">
-
-    <p class="home-kicker">A developer’s field journal</p>
+    <div class="pokeball" aria-hidden="true"><span></span></div>
+    <p class="home-kicker">A developer’s field journal · Bengaluru</p>
     <h1 id="home-title">Hi, I’m Ashish.</h1>
-    <p class="home-lede">This is my little corner of the internet — notes on building things, things I’m learning, and the occasional experiment.</p>
-    <a class="text-link arrow-link" href="{{ '/about/' | url }}">More about me <span aria-hidden="true">→</span></a>
+    <p class="home-lede">Principal Engineer at <em>Apollo 24|7</em>. This is my corner of the internet — field notes on React Native performance, mobile architecture, and small web experiments.</p>
+    <div class="home-actions">
+      <a class="text-link arrow-link" href="{{ '/about/' | url }}">More about me <span aria-hidden="true">→</span></a>
+      <span class="action-dot" aria-hidden="true">·</span>
+      <a class="text-link arrow-link muted-link" href="{{ '/tags/' | url }}">Browse by topic <span aria-hidden="true">→</span></a>
+    </div>
   </section>
 
   <section class="home-section" aria-labelledby="recent-title">
     <div class="section-heading">
       <h2 id="recent-title">Recent writing</h2>
-      <a class="text-link arrow-link" href="{{ '/posts/' | url }}">All writing <span aria-hidden="true">→</span></a>
+      <a class="text-link arrow-link" href="{{ '/posts/' | url }}">All writing ({{ collections.posts.length }}) <span aria-hidden="true">→</span></a>
     </div>
     {% set recentPosts = collections.posts | reverse | head(3) %}
     {% if recentPosts.length %}
     <ul class="recent-list">
       {% for post in recentPosts %}
+      {%- set postTags = post.data.tags | default([]) | reject("equalto", "all") | reject("equalto", "nav") | reject("equalto", "post") | reject("equalto", "posts") -%}
       <li class="recent-item">
-        <time datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time>
+        <div class="recent-meta">
+          <time datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time>
+          {% if postTags.length %}
+          <span class="recent-tag">{{ postTags[0] }}</span>
+          {% endif %}
+        </div>
         <div class="recent-copy">
           <a class="recent-title" href="{{ post.url | url }}">{{ post.data.title }}</a>
           {% if post.data.description %}<p>{{ post.data.description }}</p>{% endif %}
@@ -38,30 +48,60 @@ pageCss: /css/home.css
   </section>
 
   <section class="home-section now-section" aria-labelledby="now-title">
-    <p class="section-label">Now · October 2026</p>
-    <h2 id="now-title">Making room for what’s next.</h2>
-    <p>Giving this corner of the internet a little more room to grow. Making space for writing and small experiments.</p>
+    <div class="section-heading">
+      <div>
+        <p class="section-label">Now · October 2026</p>
+        <h2 id="now-title">Field telemetry &amp; current focus</h2>
+      </div>
+    </div>
+    <div class="now-grid">
+      <article class="now-card">
+        <span class="now-card-index">01 · Work</span>
+        <h3>Mobile Architecture at Apollo 24|7</h3>
+        <p>Leading pharma mobile engineering — building a dynamic screen engine backed by a headless CMS and defending cold-start &amp; interaction budgets.</p>
+      </article>
+      <article class="now-card">
+        <span class="now-card-index">02 · Craft</span>
+        <h3>Zero-Bloat Web &amp; Hermes</h3>
+        <p>Writing practical checklists on React Native flamecharts, JS thread discipline, and tactile static web interfaces.</p>
+      </article>
+      <article class="now-card">
+        <span class="now-card-index">03 · Off the Clock</span>
+        <h3>Custom PC Build</h3>
+        <p>Part-picking and planning a quiet, small-form-factor PC build from scratch in Bengaluru.</p>
+      </article>
+    </div>
   </section>
 
   <section class="home-section projects-section" aria-labelledby="projects-title">
     <div class="section-heading">
       <h2 id="projects-title">Projects &amp; experiments</h2>
+      <a class="text-link arrow-link" href="https://github.com/itsashis4u">GitHub profile <span aria-hidden="true">↗</span></a>
     </div>
     <a class="project-row" href="https://github.com/itsashis4u/blog">
-      <span class="project-name">This website <span aria-hidden="true">↗</span></span>
-      <span class="project-description">A personal home for writing, built with Eleventy.</span>
-      <span class="project-status">In progress</span>
+      <div class="project-main">
+        <span class="project-name">ashishkumar.dev <span aria-hidden="true">↗</span></span>
+        <span class="project-description">Personal field journal with switchable aesthetic cartridges, marginalia sidenotes, and interactive performance tools.</span>
+      </div>
+      <span class="project-status">Eleventy · Active</span>
     </a>
     <a class="project-row" href="https://github.com/itsashis4u/drawer">
-      <span class="project-name">React Native drawer <span aria-hidden="true">↗</span></span>
-      <span class="project-description">A custom drawer with bottom tabs and nested screens. An older navigation experiment, rough edges included.</span>
-      <span class="project-status">Experiment · 2023</span>
+      <div class="project-main">
+        <span class="project-name">React Native drawer <span aria-hidden="true">↗</span></span>
+        <span class="project-description">Custom drawer navigation combining bottom tabs and nested screen stacks.</span>
+      </div>
+      <span class="project-status">React Native · 2023</span>
     </a>
     <a class="project-row" href="https://github.com/itsashis4u/button-animation">
-      <span class="project-name">Button animation <span aria-hidden="true">↗</span></span>
-      <span class="project-description">A small React Native experiment with button motion: scale, fade, and a flip.</span>
+      <div class="project-main">
+        <span class="project-name">Button animation <span aria-hidden="true">↗</span></span>
+        <span class="project-description">Tactile micro-interaction study exploring scale, fade, and 3D flip transitions in React Native.</span>
+      </div>
       <span class="project-status">Experiment · 2022</span>
     </a>
   </section>
-  <p class="home-colophon">// always a work in progress</p>
+
+  {% include "pokemon-habitats.njk" %}
+
+  <p class="home-colophon">// always a work in progress · tip: try the Pokédex or Unicorn cartridges in the top bar</p>
 </div>
