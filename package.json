@@ -1,7 +1,7 @@
 {
-  "name": "eleventy-base-blog",
-  "version": "5.0.2",
-  "description": "A starter repository for a blog web site using the Eleventy static site generator.",
+  "name": "ashishkumar-blog",
+  "version": "5.1.0",
+  "description": "Personal field journal and engineering blog of Ashish Kumar Badtiya, built with Eleventy.",
   "scripts": {
     "build": "eleventy",
     "watch": "eleventy --watch",
@@ -12,21 +12,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/11ty/eleventy-base-blog.git"
+    "url": "https://github.com/itsashis4u/blog.git"
   },
   "author": {
     "name": "Ashish Kumar Badtiya",
     "email": "itsashis4u@gmail.com",
-    "url": "https://ashishkumar.dev"
+    "url": "https://www.ashishkumar.dev"
   },
   "license": "MIT",
   "engines": {
     "node": ">=20.19.0"
   },
   "bugs": {
-    "url": "https://github.com/11ty/eleventy-base-blog/issues"
+    "url": "https://github.com/itsashis4u/blog/issues"
   },
-  "homepage": "https://github.com/11ty/eleventy-base-blog#readme",
+  "homepage": "https://www.ashishkumar.dev",
   "devDependencies": {
     "@11ty/eleventy": "^3.1.6",
     "@11ty/eleventy-navigation": "^1.0.5",
