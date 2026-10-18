@@ -1,6 +1,6 @@
 ---
-title: Better debugging react native apps with Flipper
-description: How Flipper helps you debug issues with your app faster
+title: Better debugging in React Native apps with Flipper
+description: How Flipper helps you inspect layouts, network calls, and Redux state faster.
 date: 2021-02-19
 tags:
   - react-native
@@ -14,18 +14,19 @@ marginalia:
     - Images
     - Shared Preferences
     - Crash Reporter
-  note: "If you use redux in your application, you can install the Redux Flipper plugin."
+  note: "If you use Redux in your application, you can install the Redux Flipper plugin. (For React Native 0.76+, prefer the built-in React Native DevTools.)"
   requires:
     - "react-native >= 0.62"
     - "flipper 0.76.0"
 ---
 ### What is Flipper?
-Flipper is a great platform to inspect and debug mobile applications written in ios and android. This developer tool is written in [electron](https://www.electronjs.org/). It is useful in inspecting layout, comes with a network inspector and device log viewer. It has also a plugin API which means you can extend the functionalities by creating your own plugins or using existing ones from the internet.
-For example, if you use redux in your application, you can install [Redux Flipper](https://github.com/jk-gan/redux-flipper) plugin.
 
-By default, Flipper provides these plugins:
+Flipper is a desktop platform for inspecting and debugging mobile applications on iOS and Android. Built on [Electron](https://www.electronjs.org/), it combines a layout inspector, network inspector, and device log viewer under one roof. Its plugin API also lets you build custom tooling or pull in community plugins — for example, [redux-flipper](https://github.com/jk-gan/redux-flipper) for inspecting Redux actions and state diffs.
+
+By default, Flipper ships with:
+
 - Layout Inspector
-- Network
+- Network Inspector
 - Databases
 - Images
 - Shared Preferences
@@ -33,28 +34,31 @@ By default, Flipper provides these plugins:
 - React DevTools
 - Metro Logs
 
-### Set up
-If you are starting a new app using react native v0.62 and above, Flipper is available out of the box.
-If you want to integrate with an existing project (>= v0.62), follow the steps:
-Android:
-https://fbflipper.com/docs/getting-started/react-native-android/
+### Setup
 
-iOS:
-https://fbflipper.com/docs/getting-started/react-native-ios
+If you are starting a new app on React Native `0.62` or newer, Flipper comes wired up out of the box. To integrate it into an existing project (`>= 0.62`), follow the platform guides:
 
+- **Android:** [Flipper React Native Android guide](https://fbflipper.com/docs/getting-started/react-native-android/)
+- **iOS:** [Flipper React Native iOS guide](https://fbflipper.com/docs/getting-started/react-native-ios)
 
-### Updating to latest SDK version
-By default, the version of Flipper shipped with react native maybe outdated. To verify you are on the latest version, run `npm info flipper` to determine the latest stable version.
+### Updating to the latest SDK version
 
-To update to the latest SDK, follow the steps:
+The Flipper SDK version bundled with a given React Native release can lag behind the desktop client. Run `npm info flipper` to check the latest stable release, then update your native configs:
 
-Android:
-- Bump the `FLIPPER_VERSION` variable in `android/gradle.properties`, for example: `FLIPPER_VERSION=0.76.0`
-- Run `./gradlew clean` in the android directory.
+**Android (`android/gradle.properties`):**
 
-iOS:
-- Call `use_flipper `with a specific version in `ios/Podfile`, for example: `use_flipper!({ 'Flipper' => '0.76.0' })`.
-- Run `pod install` in the ios directory or `npx pod-install` in your project root.
+```properties
+FLIPPER_VERSION=0.76.0
+```
 
+Then run `./gradlew clean` inside your `android/` directory.
 
-Flipper will make your life easier as a react native developer. Do try it.
+**iOS (`ios/Podfile`):**
+
+```ruby
+use_flipper!({ 'Flipper' => '0.76.0' })
+```
+
+Then run `pod install` inside `ios/` (or `npx pod-install` from the project root).
+
+Flipper takes a lot of friction out of day-to-day React Native debugging — give it a spin.

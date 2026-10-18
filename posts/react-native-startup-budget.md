@@ -6,6 +6,16 @@ tags:
   - react-native
   - performance
 layout: layouts/post.njk
+marginalia:
+  shipsWith:
+    - Android Studio CPU Profiler
+    - Hermes release bytecode
+    - InteractionManager
+    - CI bundle-size gate
+  note: "A budget without a CI gate is just a wish. Time cold kill → first interactive paint on one reference mid-range Android device."
+  requires:
+    - "Release build (minify + Hermes)"
+    - "Mid-range Android target"
 ---
 
 Cold start is where React Native apps feel honest. Users do not care that your feature flag system is elegant if the first screen takes three seconds to paint.
@@ -76,6 +86,38 @@ Example budget for a consumer app on mid-range Android (adjust for your product)
 - Cold start to first interactive screen: under **2.5s** on the reference device
 - Release JS bundle: know the number; fail CI if it jumps more than a set % without review
 - First screen network: one critical request, not five
+
+<div class="budget-sim" data-budget-sim data-budget-limit="2500">
+  <div class="budget-sim-header">
+    <p class="budget-sim-title">Interactive Cold-Start Budget Simulator</p>
+    <span class="budget-sim-badge" data-budget-status>PASS (250 ms headroom)</span>
+  </div>
+  <div class="budget-flamebar" aria-hidden="true">
+    <div class="flame-seg flame-native" data-seg="native" style="width: 18%" title="Native Shell"></div>
+    <div class="flame-seg flame-js" data-seg="js" style="width: 24%" title="Hermes Parse & Execute"></div>
+    <div class="flame-seg flame-mount" data-seg="mount" style="width: 23%" title="React Mount & Store Hydration"></div>
+    <div class="flame-seg flame-net" data-seg="net" style="width: 25%" title="Critical Network Request"></div>
+  </div>
+  <div class="budget-controls">
+    <div class="budget-control">
+      <label for="sim-native"><span>1. Native shell init</span><strong data-val="native">450 ms</strong></label>
+      <input id="sim-native" type="range" min="150" max="1200" step="25" value="450" data-bucket="native">
+    </div>
+    <div class="budget-control">
+      <label for="sim-js"><span>2. Hermes bundle parse</span><strong data-val="js">600 ms</strong></label>
+      <input id="sim-js" type="range" min="200" max="1500" step="25" value="600" data-bucket="js">
+    </div>
+    <div class="budget-control">
+      <label for="sim-mount"><span>3. React mount + store</span><strong data-val="mount">575 ms</strong></label>
+      <input id="sim-mount" type="range" min="150" max="1400" step="25" value="575" data-bucket="mount">
+    </div>
+    <div class="budget-control">
+      <label for="sim-net"><span>4. First screen network</span><strong data-val="net">625 ms</strong></label>
+      <input id="sim-net" type="range" min="100" max="1600" step="25" value="625" data-bucket="net">
+    </div>
+  </div>
+  <p class="budget-sim-footer">Total cold start: <strong data-budget-total>2250 ms / 2500 ms</strong> · Drag sliders to test how bundle bloat or eager SDKs trip the 2.5s CI gate.</p>
+</div>
 
 A budget without a gate is a wish. Put the bundle size check in CI. Put the startup path on a weekly smoke test. Revisit the numbers when the product changes — not when someone feels anxious.
 

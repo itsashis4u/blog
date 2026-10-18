@@ -2,33 +2,106 @@
 layout: layouts/base.njk
 templateClass: tmpl-post
 pageCss: /css/post.css
+pageJs: /js/post.js
 type: article
 ---
-{%- set visibleTags = tags | reject("equalto", "all") | reject("equalto", "nav") | reject("equalto", "post") | reject("equalto", "posts") -%}
-<article class="article">
-  <header class="article-header">
-    <a class="article-back" href="{{ '/posts/' | url }}">← All writing</a>
-    <h1>{{ title }}</h1>
-    {% if description %}<p class="article-lede">{{ description }}</p>{% endif %}
-    <p class="article-meta"><time datetime="{{ date | htmlDateString }}">{{ date | readableDate }}</time><span aria-hidden="true"> · </span>Ashish Kumar Badtiya</p>
-  </header>
-  <div class="post-body">{{ content | safe }}</div>
-  {% if marginalia %}
-  <aside class="article-notes" aria-label="Additional notes">
-    {% if marginalia.shipsWith and marginalia.shipsWith.length %}<h2>Included</h2><ul>{% for item in marginalia.shipsWith %}<li>{{ item }}</li>{% endfor %}</ul>{% endif %}
-    {% if marginalia.note %}<p>{{ marginalia.note }}</p>{% endif %}
-    {% if marginalia.requires and marginalia.requires.length %}<h2>Requirements</h2><ul>{% for req in marginalia.requires %}<li>{{ req }}</li>{% endfor %}</ul>{% endif %}
+{%- set visibleTags = tags | default([]) | reject("equalto", "all") | reject("equalto", "nav") | reject("equalto", "post") | reject("equalto", "posts") -%}
+{%- set wordCount = content | striptags | wordcount -%}
+{%- set readingMins = (wordCount / 200) | round(0, "ceil") -%}
+{%- if readingMins < 1 -%}{%- set readingMins = 1 -%}{%- endif -%}
+
+<div class="article-shell">
+  <article class="article">
+    <header class="article-header">
+      <a class="article-back arrow-link" href="{{ '/posts/' | url }}"><span aria-hidden="true">←</span> All writing</a>
+      <h1>{{ title }}</h1>
+      {% if description %}<p class="article-lede">{{ description }}</p>{% endif %}
+      <div class="article-meta-row">
+        <p class="article-meta">
+          <time datetime="{{ date | htmlDateString }}">{{ date | readableDate }}</time>
+          <span aria-hidden="true"> · </span>
+          <span id="reading-time">{{ readingMins }} min read</span>
+          <span aria-hidden="true"> · </span>
+          <span>Ashish Kumar Badtiya</span>
+        </p>
+        {% if visibleTags.length %}
+        <div class="article-header-tags">
+          {% for tag in visibleTags %}<a href="{{ ('/tags/' + tag + '/') | url }}" class="tag-pill">{{ tag }}</a>{% endfor %}
+        </div>
+        {% endif %}
+      </div>
+    </header>
+
+    <div class="post-body">{{ content | safe }}</div>
+
+    <footer class="article-footer">
+      <div class="article-footer-tags">
+        <span class="lbl">Filed under</span>
+        {% for tag in visibleTags %}<a href="{{ ('/tags/' + tag + '/') | url }}" class="tag-pill">{{ tag }}</a>{% endfor %}
+      </div>
+    </footer>
+
+    {% set nextPost = collections.posts | getNextCollectionItem(page) %}
+    {% set previousPost = collections.posts | getPreviousCollectionItem(page) %}
+    {% if nextPost or previousPost %}
+    <nav class="article-adjacent" aria-label="More writing">
+      {% if previousPost %}
+      <a class="adjacent-card" href="{{ previousPost.url | url }}">
+        <span>← Previous note</span>
+        <strong>{{ previousPost.data.title }}</strong>
+      </a>
+      {% endif %}
+      {% if nextPost %}
+      <a class="adjacent-card adjacent-next" href="{{ nextPost.url | url }}">
+        <span>Next note →</span>
+        <strong>{{ nextPost.data.title }}</strong>
+      </a>
+      {% endif %}
+    </nav>
+    {% endif %}
+  </article>
+
+  <aside class="rail" aria-label="Article table of contents and marginalia">
+    <div class="rail-sticky">
+      <div class="rail-progress">
+        <div class="rail-progress-header">
+          <span class="lbl">Reading progress</span>
+          <span class="mono rail-progress-pct" id="reading-progress-label">0%</span>
+        </div>
+        <div class="rail-progress-track" aria-hidden="true">
+          <div class="rail-progress-fill" id="reading-progress"></div>
+        </div>
+      </div>
+
+      <nav class="rail-toc" aria-label="On this page">
+        <span class="lbl">On this page</span>
+        <div class="rail-toc-links" id="toc-list"></div>
+      </nav>
+
+      {% if marginalia %}
+      <div class="rail-marginalia article-notes">
+        <span class="lbl">Field Specs &amp; Marginalia</span>
+        {% if marginalia.note %}
+        <p class="marginalia-callout">{{ marginalia.note }}</p>
+        {% endif %}
+        {% if marginalia.shipsWith and marginalia.shipsWith.length %}
+        <div class="marginalia-group">
+          <h2>Key levers</h2>
+          <ul>
+            {% for item in marginalia.shipsWith %}<li>{{ item }}</li>{% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+        {% if marginalia.requires and marginalia.requires.length %}
+        <div class="marginalia-group">
+          <h2>Environment</h2>
+          <ul class="mono-list">
+            {% for req in marginalia.requires %}<li>{{ req }}</li>{% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
   </aside>
-  {% endif %}
-  <footer class="article-footer">
-    {% for tag in visibleTags %}<a href="{{ ('/tags/' + tag + '/') | url }}" class="tag-pill">{{ tag }}</a>{% endfor %}
-  </footer>
-  {% set nextPost = collections.posts | getNextCollectionItem(page) %}
-  {% set previousPost = collections.posts | getPreviousCollectionItem(page) %}
-  {% if nextPost or previousPost %}
-  <nav class="article-adjacent" aria-label="More writing">
-    {% if previousPost %}<a href="{{ previousPost.url | url }}"><span>Previous</span>{{ previousPost.data.title }}</a>{% endif %}
-    {% if nextPost %}<a href="{{ nextPost.url | url }}"><span>Next</span>{{ nextPost.data.title }}</a>{% endif %}
-  </nav>
-  {% endif %}
-</article>
+</div>
