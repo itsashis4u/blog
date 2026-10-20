@@ -2,10 +2,8 @@
 <html lang="en" data-style="journal">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <script src="{{ '/js/theme.js' | url }}"></script>
-    <title>{{ title or metadata.title }}</title>
     {% set articleMeta = [] %}
     {% if type == "article" and date %}
       {% set publishedDate = date | htmlDateString %}
