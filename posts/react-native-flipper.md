@@ -2,6 +2,8 @@
 title: Better debugging in React Native apps with Flipper
 description: How Flipper helps you inspect layouts, network calls, and Redux state faster.
 date: 2021-02-19
+updated: 2026-10-18
+quickAnswer: "Flipper is a desktop platform for inspecting and debugging iOS and Android apps, with a layout inspector, network inspector, device logs, and a plugin API (including redux-flipper). On React Native 0.62 or newer it is included for new apps, and the SDK can be pinned to 0.76.0 in android/gradle.properties and the iOS Podfile."
 tags:
   - react-native
   - flipper

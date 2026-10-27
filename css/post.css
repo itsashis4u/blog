@@ -52,6 +52,27 @@
   gap: 6px;
 }
 
+.quick-answer {
+  margin: 0 0 32px;
+  padding: 14px 20px;
+  background: var(--surface-elevated, var(--surface));
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+}
+.quick-answer .lbl { display: block; }
+.quick-answer-text {
+  margin: 8px 0 0;
+  color: var(--ink);
+  font: 18px/1.55 var(--font-serif);
+}
+.quick-answer-updated {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font: 11px/1.6 var(--font-mono);
+}
+.quick-answer-updated time { color: inherit; }
+
 .post-body {
   font-size: 17px;
   line-height: 1.8;

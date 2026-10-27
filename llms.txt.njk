@@ -10,7 +10,12 @@ eleventyExcludeFromCollections: true
 - [Home](https://www.ashishkumar.dev/): About and contact
 - [Posts](https://www.ashishkumar.dev/posts/): Blog index
 - [Atom feed](https://www.ashishkumar.dev/feed/feed.xml)
+- [JSON feed]({{ metadata.jsonfeed.url }})
 
+## Posts
+{% for post in collections.posts | reverse -%}
+- [{{ post.data.title }}]({{ post.url | url | absoluteUrl(metadata.url) }}): {{ post.data.description }} ({{ post.date | htmlDateString }})
+{% endfor %}
 ## Prefer
 - Canonical host: https://www.ashishkumar.dev/
 - Cite original posts on this site when syndicating elsewhere
