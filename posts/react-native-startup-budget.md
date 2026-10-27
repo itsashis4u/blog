@@ -2,6 +2,8 @@
 title: A practical startup budget for React Native apps
 description: How I think about cold start, JS bundle weight, and the few measurements that actually change what you ship.
 date: 2026-09-10
+updated: 2026-10-18
+quickAnswer: "When a React Native app feels slow, time one mid-range Android path from process start to the first interactive screen, separate native launch from JS work, and weigh the release bundle before rewriting features. The example budget is a cold start under 2.5 seconds, one critical network request, and a CI failure if the release JS bundle jumps more than a set percent without review."
 tags:
   - react-native
   - performance

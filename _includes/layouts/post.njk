@@ -32,6 +32,14 @@ type: article
       </div>
     </header>
 
+    {% if quickAnswer %}
+    <aside class="quick-answer">
+      <p class="lbl">Quick answer</p>
+      <p class="quick-answer-text">{{ quickAnswer }}</p>
+      <p class="quick-answer-updated">Updated <time datetime="{{ (updated or date) | htmlDateString }}">{{ (updated or date) | readableDate }}</time></p>
+    </aside>
+    {% endif %}
+
     <div class="post-body">{{ content | safe }}</div>
 
     <footer class="article-footer">

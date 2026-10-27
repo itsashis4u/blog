@@ -2,6 +2,8 @@
 title: Ship fewer JS threads — a React Native interaction budget
 description: How I keep tap-to-response snappy on mid-range Android without rewriting the whole app.
 date: 2026-09-12
+updated: 2026-09-12
+quickAnswer: "On a mid-range Android device, the interaction budget is tap to first paint of the next UI on the worst navigation. That delay falls into JS work on the critical path, bridge or native layout, or list and image cost, and the cheap wins are InteractionManager.runAfterInteractions, keeping the press handler off the network, and tighter lists and images."
 tags:
   - react-native
   - performance

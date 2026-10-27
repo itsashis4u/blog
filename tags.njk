@@ -14,6 +14,7 @@ layout: layouts/home.njk
 pageCss: /css/archive.css
 eleventyComputed:
   title: Tagged “{{ tag }}”
+  description: "Posts about {{ tag }} by Ashish Kumar"
 permalink: /tags/{{ tag }}/
 ---
 {% set postslist = collections[tag] %}
